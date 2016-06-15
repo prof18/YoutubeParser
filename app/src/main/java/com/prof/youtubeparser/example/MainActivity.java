@@ -1,20 +1,47 @@
+/*
+ *    The MIT License (MIT)
+ *
+ *    Copyright (c) 2016 Marco Gomiero
+ *
+ *    Permission is hereby granted, free of charge, to any person obtaining a copy
+ *    of this software and associated documentation files (the "Software"), to deal
+ *    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *    copies of the Software, and to permit persons to whom the Software is
+ *    furnished to do so, subject to the following conditions:
+ *
+ *    The above copyright notice and this permission notice shall be included in all
+ *    copies or substantial portions of the Software.
+ *
+ *    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ *    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *    SOFTWARE.
+ */
+
 package com.prof.youtubeparser.example;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pnikosis.materialishprogress.ProgressWheel;
@@ -32,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -60,10 +88,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ConnectionDetector cd = new ConnectionDetector(this);
-
-        Boolean isInternetPresent = cd.isNetworkAvailable();
-        if (!isInternetPresent) {
+        if (!isNetworkAvailable()) {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage(R.string.alert_message)
@@ -81,37 +106,42 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog alert = builder.create();
             alert.show();
 
-        } else if (isInternetPresent) {
+        } else if (isNetworkAvailable()) {
 
             loadVideo();
-
         }
+    }
 
-
+    public boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     public void loadVideo() {
 
-      /*  if (vAdapter != null)
-            vAdapter.clearData();
-*/
         if (!mSwipeRefreshLayout.isRefreshing())
             progressWheel.setVisibility(View.VISIBLE);
 
         Parser parser = new Parser();
+        //set Channel ID, number of result to show, Broswer API Key
         String url = parser.generateRequest("UCVHFbqXqoYvEWM1Ddxl0QDg", 20, "AIzaSyDdfElmBLygd3Q3Pld1Xb2GaHoUGDu8RUE");
         parser.execute(url);
         parser.onFinish(new Parser.OnTaskCompleted() {
+            //what to do when the parsing is done
             @Override
             public void onTaskCompleted(ArrayList<Video> list) {
+                //list is an ArrayList with all video's item
+                //set the adapter to recycler view
                 vAdapter = new VideoAdapter(list, R.layout.yt_row, MainActivity.this );
                 mRecyclerView.setAdapter(vAdapter);
                 vAdapter.notifyDataSetChanged();
-
                 progressWheel.setVisibility(View.GONE);
                 mSwipeRefreshLayout.setRefreshing(false);
             }
 
+            //what to do in case of error
             @Override
             public void onError() {
 
@@ -120,35 +150,26 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         progressWheel.setVisibility(View.GONE);
                         mSwipeRefreshLayout.setRefreshing(false);
-                        Toast.makeText(MainActivity.this, "Impossibile caricare i video. Swipe in giù per riprovare",
+                        Toast.makeText(MainActivity.this, "Unable to load data. Swipe down to retry",
                                 Toast.LENGTH_SHORT).show();
-                        Log.i("Unable to load ", "videos");
+                        Log.i("YoutubeParser", "Unable to load video's data");
                     }
                 });
-
             }
         });
-
     }
-
-
 
     @Override
     public void onResume() {
 
         super.onResume();
-
-        if (vAdapter != null) {
-
+        if (vAdapter != null)
             vAdapter.notifyDataSetChanged();
-          //  vAdapter.clearData();
-
-
-        }
     }
 
     @Override
     protected void onDestroy() {
+
         super.onDestroy();
         if (vAdapter != null)
             vAdapter.clearData();
@@ -156,21 +177,32 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        int id = item.getItemId();
         if (id == R.id.action_settings) {
-            return true;
+
+            android.support.v7.app.AlertDialog alertDialog = new android.support.v7.app.AlertDialog.Builder(MainActivity.this).create();
+            alertDialog.setTitle(R.string.app_name);
+            alertDialog.setMessage(Html.fromHtml(MainActivity.this.getString(R.string.info_text) +
+                    " <a href='http://github.com/prof18/'>GitHub.</a>" +
+                    MainActivity.this.getString(R.string.author)));
+            alertDialog.setButton(android.support.v7.app.AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+
+          ((TextView) alertDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+            
         }
 
         return super.onOptionsItemSelected(item);
