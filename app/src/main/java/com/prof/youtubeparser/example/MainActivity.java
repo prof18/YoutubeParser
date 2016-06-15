@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
             alertDialog.show();
 
           ((TextView) alertDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
-            
+
         }
 
         return super.onOptionsItemSelected(item);
