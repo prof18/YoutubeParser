@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">YoutubeParser</string>
     <string name="action_settings">Settings</string>
+    <string name="alert_title">Attention</string>
+    <string name="alert_message">Unable to load data. \nCheck your connection!</string>
+    <string name="alert_positive">Close</string>
+    <string name="video">Video</string>
 </resources>

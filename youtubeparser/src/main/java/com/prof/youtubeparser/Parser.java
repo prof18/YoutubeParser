@@ -39,7 +39,8 @@ public class Parser extends AsyncTask<String, Void, String>{
     /**
      * This method generate the url that retrieves Youtube video data
      *
-     * @param channelID The ID of the desired channel. Ex: https://www.youtube.com/channel/UC_x5XG1OV2P6uZZ5FSM9Ttw
+     * @param channelID The ID of the desired channel. Ex: https://www.youtube.com/channel/UCVHFbqXqoYvEWM1Ddxl0QDg
+     *                  channel id = UCVHFbqXqoYvEWM1Ddxl0QDg
      * @param maxResult The number of video that you want to show
      * @param key       Your Browser API key. Obtain one by visiting https://console.developers.google.com
      */

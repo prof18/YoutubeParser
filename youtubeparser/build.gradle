@@ -24,4 +24,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile 'com.google.code.gson:gson:2.4'
+    compile 'com.pnikosis:materialish-progress:1.7'
 }
