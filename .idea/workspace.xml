@@ -10,16 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="868aa82b-552b-45d0-b0fe-44355deb48ad" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/prof/youtubeparser/example/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/prof/youtubeparser/example/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/Default.java" afterPath="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/Default.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/High.java" afterPath="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/High.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/Id.java" afterPath="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/Id.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/Item.java" afterPath="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/Item.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/Main.java" afterPath="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/Medium.java" afterPath="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/Medium.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/PageInfo.java" afterPath="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/PageInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/Snippet.java" afterPath="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/Snippet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/Thumbnails.java" afterPath="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/Thumbnails.java" />
     </list>
     <ignored path="YoutubeParser.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,10 +39,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Parser.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="4.0069566">
+            <state vertical-scroll-proportion="0.0">
               <caret line="154" column="32" selection-start-line="154" selection-start-column="32" selection-end-line="154" selection-end-column="32" />
               <folding>
                 <element signature="e#0#5339#0" expanded="true" />
@@ -59,15 +51,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="High.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/High.java">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/prof/youtubeparser/example/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.78086954">
+              <caret line="132" column="21" selection-start-line="132" selection-start-column="21" selection-end-line="132" selection-end-column="21" />
               <folding>
-                <element signature="e#0#1915#0" expanded="true" />
-                <element signature="e#1449#1450#0" expanded="true" />
-                <element signature="e#1477#1478#0" expanded="true" />
+                <element signature="e#0#7919#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2828,7 +2818,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/prof/youtubeparser/example/VideoAdapter.java" />
         <option value="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/Parser.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/prof/youtubeparser/example/MainActivity.java" />
         <option value="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/Main.java" />
         <option value="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/Default.java" />
         <option value="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/High.java" />
@@ -2838,6 +2827,7 @@
         <option value="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/PageInfo.java" />
         <option value="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/Snippet.java" />
         <option value="$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/Thumbnails.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/prof/youtubeparser/example/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -3465,12 +3455,12 @@
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963374" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963374" sideWeight="0.49786553" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963374" sideWeight="0.50426894" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32963374" sideWeight="0.49573106" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32963374" sideWeight="0.50213444" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963374" sideWeight="0.49359658" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963374" sideWeight="0.49359658" order="2" side_tool="false" content_ui="tabs" />
@@ -3634,26 +3624,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/prof/youtubeparser/example/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="204" column="0" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#7925#0" expanded="true" />
-            <element signature="e#3609#3631#0" expanded="true" />
-            <element signature="e#3663#3683#0" expanded="true" />
-            <element signature="e#3766#3789#0" expanded="true" />
-            <element signature="e#5805#6302#0" expanded="true" />
-            <element signature="e#6301#6302#0" expanded="true" />
-            <element signature="e#7111#7128#0" expanded="true" />
-            <element signature="e#7180#7227#0" expanded="true" />
-            <element signature="e#7323#7367#0" expanded="true" />
-            <element signature="e#7482#7696#0" expanded="true" />
-            <element signature="e#7695#7696#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/models/Default.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3759,10 +3729,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/youtubeparser/src/main/java/com/prof/youtubeparser/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.0069566">
+        <state vertical-scroll-proportion="0.0">
           <caret line="154" column="32" selection-start-line="154" selection-start-column="32" selection-end-line="154" selection-end-column="32" />
           <folding>
             <element signature="e#0#5339#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/prof/youtubeparser/example/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.78086954">
+          <caret line="132" column="21" selection-start-line="132" selection-start-column="21" selection-end-line="132" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#7919#0" expanded="true" />
           </folding>
         </state>
       </provider>

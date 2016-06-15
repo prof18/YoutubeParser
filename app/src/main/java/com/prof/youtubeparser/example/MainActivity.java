@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
         Parser parser = new Parser();
         //set Channel ID, number of result to show, Broswer API Key
-        String url = parser.generateRequest("UCVHFbqXqoYvEWM1Ddxl0QDg", 20, "AIzaSyDdfElmBLygd3Q3Pld1Xb2GaHoUGDu8RUE");
+        String url = parser.generateRequest("UCVHFbqXqoYvEWM1Ddxl0QDg", 20, "YOUR BROSWER API KEY");
         parser.execute(url);
         parser.onFinish(new Parser.OnTaskCompleted() {
             //what to do when the parsing is done
@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
             android.support.v7.app.AlertDialog alertDialog = new android.support.v7.app.AlertDialog.Builder(MainActivity.this).create();
             alertDialog.setTitle(R.string.app_name);
             alertDialog.setMessage(Html.fromHtml(MainActivity.this.getString(R.string.info_text) +
-                    " <a href='http://github.com/prof18/'>GitHub.</a>" +
+                    " <a href='http://github.com/prof18/YoutubeParser'>GitHub.</a>" +
                     MainActivity.this.getString(R.string.author)));
             alertDialog.setButton(android.support.v7.app.AlertDialog.BUTTON_NEUTRAL, "OK",
                     new DialogInterface.OnClickListener() {
