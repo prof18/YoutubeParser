@@ -66,6 +66,8 @@ public class Parser extends AsyncTask<String, Void, String>{
      *                  channel id = UCVHFbqXqoYvEWM1Ddxl0QDg
      * @param maxResult The number of video that you want to show
      * @param key       Your Browser API key. Obtain one by visiting https://console.developers.google.com
+     *
+     * @return Return the url required to get data
      */
     public String generateRequest(String channelID, int maxResult, String key ) {
 
