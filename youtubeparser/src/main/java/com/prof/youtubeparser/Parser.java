@@ -137,8 +137,8 @@ public class Parser extends AsyncTask<String, Void, String>{
                 String imageLink = high.getUrl();
                 String sDate = snippet.getPublishedAt();
 
-                Locale.setDefault(Locale.ITALIAN);
-                TimeZone tz = TimeZone.getTimeZone("GMT+2:00");
+                Locale.setDefault(Locale.getDefault());
+                TimeZone tz = TimeZone.getDefault();
                 Calendar cal = Calendar.getInstance(tz);
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
                 sdf.setCalendar(cal);
