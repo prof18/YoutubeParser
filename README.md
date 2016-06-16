@@ -43,6 +43,7 @@ parser.onFinish(new Parser.OnTaskCompleted() {
 ##Sample app
 I wrote a simple app that shows videos from Android Developer Youtube Channel. 
 
+<img src="https://raw.githubusercontent.com/prof18/YoutubeParser/master/Screenshot_20160617-002123.png" width="30%" height="30%">
 
 You can browse the code <a href="https://github.com/prof18/YoutubeParser/tree/master/app"> in this repo.</a> 
 You can also download the <a href="https://github.com/prof18/YoutubeParser/blob/master/YoutubeParser.apk"> apk file</a> to try it!
