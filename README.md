@@ -12,7 +12,7 @@ of a video from a specific channel.
 The library is uploaded in jCenter, so you can easily add the dependency:
 ```Gradle
 dependencies {
-  compile 'com.prof.youtubeparser:youtubeparser:1.0'
+  compile 'com.prof.youtubeparser:youtubeparser:1.1'
 }
 ```
 ####Use:
