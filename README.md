@@ -40,6 +40,8 @@ parser.onFinish(new Parser.OnTaskCompleted() {
     }
 });
 ```
+To create a BROSWER API KEY you can follow 
+<a href="https://support.google.com/cloud/answer/6158862?hl=en#creating-browser-api-keys"> this guide.</a>
 ##Sample app
 I wrote a simple app that shows videos from Android Developer Youtube Channel. 
 
