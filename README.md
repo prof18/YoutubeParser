@@ -1,6 +1,6 @@
 # YoutubeParser
 [![Download](https://api.bintray.com/packages/prof18/maven/YoutubeParser/images/download.svg)](https://bintray.com/prof18/maven/YoutubeParser/_latestVersion)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](http://opensource.org/licenses/MIT) 
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) 
 ![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)
 
 This is an Android library to get video's information from Youtube channels. You can retrieve title, link and thumbnails
