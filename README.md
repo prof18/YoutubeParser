@@ -1,21 +1,20 @@
 # YoutubeParser
-[ ![Download](https://api.bintray.com/packages/prof18/maven/YoutubeParser/images/download.svg) ]
-(https://bintray.com/prof18/maven/YoutubeParser/_latestVersion)
+[![Download](https://api.bintray.com/packages/prof18/maven/YoutubeParser/images/download.svg)](https://bintray.com/prof18/maven/YoutubeParser/_latestVersion)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](http://opensource.org/licenses/MIT) 
 ![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)
 
 This is an Android library to get video's information from Youtube channels. You can retrieve title, link and thumbnails
 of a video from a specific channel. 
 
-##How to
-####Import:
+## How to
+#### Import:
 The library is uploaded in jCenter, so you can easily add the dependency:
 ```Gradle
 dependencies {
   compile 'com.prof.youtubeparser:youtubeparser:1.1'
 }
 ```
-####Use:
+#### Use:
 ```Java
 import com.prof.youtubeparser.Parser;
 import com.prof.youtubeparser.models.Video;
@@ -42,7 +41,7 @@ parser.onFinish(new Parser.OnTaskCompleted() {
 ```
 To create a BROSWER API KEY you can follow 
 <a href="https://support.google.com/cloud/answer/6158862?hl=en#creating-browser-api-keys"> this guide.</a>
-##Sample app
+## Sample app
 I wrote a simple app that shows videos from Android Developer Youtube Channel. 
 
 <img src="https://raw.githubusercontent.com/prof18/YoutubeParser/master/Screen.png" width="30%" height="30%">
@@ -50,7 +49,7 @@ I wrote a simple app that shows videos from Android Developer Youtube Channel.
 You can browse the code <a href="https://github.com/prof18/YoutubeParser/tree/master/app"> in this repo.</a> 
 You can also download the <a href="https://github.com/prof18/YoutubeParser/blob/master/YoutubeParser.apk"> apk file</a> to try it!
 
-##License
+## License
 ```
    Copyright 2016 Marco Gomiero
 
