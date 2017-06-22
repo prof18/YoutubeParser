@@ -78,7 +78,7 @@ public class Parser extends AsyncTask<String, Void, String> {
      *
      * @param channelID The ID of the desired channel. Ex: https://www.youtube.com/channel/UCVHFbqXqoYvEWM1Ddxl0QDg
      *                  channel id = UCVHFbqXqoYvEWM1Ddxl0QDg
-     * @param maxResult The number of video to get
+     * @param maxResult The number of video to get. The maximum value is 50
      * @param orderType The type of ordering. You can choose an order by date: {@link #ORDER_DATE} and by view count {@link #ORDER_VIEW_COUNT}.
      * @param key       Your Browser API key. Obtain one by visiting https://console.developers.google.com
      * @return The url required to get data
@@ -111,7 +111,7 @@ public class Parser extends AsyncTask<String, Void, String> {
      *
      * @param channelID The ID of the desired channel. Ex: https://www.youtube.com/channel/UCVHFbqXqoYvEWM1Ddxl0QDg
      *                  channel id = UCVHFbqXqoYvEWM1Ddxl0QDg
-     * @param maxResult The number of video to get
+     * @param maxResult The number of video to get. The maximum value is 50
      * @param orderType The type of ordering. You can choose an order by date: {@link #ORDER_DATE} and by view count {@link #ORDER_VIEW_COUNT}.
      * @param key       Your Browser API key. Obtain one by visiting https://console.developers.google.com
      * @param nextToken The token necessary to load more data
