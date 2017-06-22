@@ -9,8 +9,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 3
-        versionName "2.0"
+        versionCode 4
+        versionName "2.1"
     }
     buildTypes {
         release {
@@ -29,7 +29,7 @@ dependencies {
 }
 
 group = 'com.prof.youtubeparser'
-version = '2.0'
+version = '2.1'
 
 task generateSourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -58,10 +58,10 @@ bintray {
         name = 'YoutubeParser'
 
         version {
-            name = '2.0'
+            name = '2.1'
             desc = 'A library to parse Youtube video'
             released = '2017-06-22T20:35:16.741+0200'
-            vcsTag = '2.0'
+            vcsTag = '2.1'
         }
 
         licenses = ['Apache-2.0']
