@@ -12,20 +12,21 @@
 *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 *   See the License for the specific language governing permissions and
 *   limitations under the License.
-*   
+*
 */
 
-package com.prof.youtubeparser.models;
+package com.prof.youtubeparser.models.stats;
 
 /**
- * Created by marco on 5/7/16.
- */
+ * Created by Marco Gomiero on 19/06/2017.
+ **/
+
 public class Item {
 
     private String kind;
     private String etag;
-    private Id id;
-    private Snippet snippet;
+    private String id;
+    private Statistics statistics;
 
     public String getKind() {
         return kind;
@@ -43,20 +44,20 @@ public class Item {
         this.etag = etag;
     }
 
-    public Id getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Id id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Snippet getSnippet() {
-        return snippet;
+    public Statistics getStatistics() {
+        return statistics;
     }
 
-    public void setSnippet(Snippet snippet) {
-        this.snippet = snippet;
+    public void setStatistics(Statistics statistics) {
+        this.statistics = statistics;
     }
 
     @Override
@@ -64,8 +65,8 @@ public class Item {
         return "Item{" +
                 "kind='" + kind + '\'' +
                 ", etag='" + etag + '\'' +
-                ", id=" + id +
-                ", snippet=" + snippet +
+                ", id='" + id + '\'' +
+                ", statistics=" + statistics +
                 '}';
     }
 }

@@ -23,6 +23,7 @@ import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -31,16 +32,15 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.pnikosis.materialishprogress.ProgressWheel;
 import com.prof.youtubeparser.Parser;
-import com.prof.youtubeparser.models.Video;
+import com.prof.youtubeparser.models.videos.Video;
 
 import java.util.ArrayList;
 
@@ -49,7 +49,13 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private VideoAdapter vAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    private ProgressWheel progressWheel;
+    private ProgressBar progressBar;
+    private FloatingActionButton fab;
+    private int totalElement;
+    private String nextToken;
+    private final String CHANNEL_ID = "UCVHFbqXqoYvEWM1Ddxl0QDg";
+    //TODO: delete
+    private final String API_KEY = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        progressWheel = (ProgressWheel) findViewById(R.id.progress_wheel);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -99,15 +106,63 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog alert = builder.create();
             alert.show();
 
-        } else if (isNetworkAvailable()) {
-
+        } else if (isNetworkAvailable())
             loadVideo();
-        }
+
+        //show the fab on the bottom of recycler view
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+
+                LinearLayoutManager layoutManager = LinearLayoutManager.class.cast(recyclerView.getLayoutManager());
+                int lastVisible = layoutManager.findLastVisibleItemPosition();
+
+                if (lastVisible == totalElement - 1)
+                    fab.setVisibility(View.VISIBLE);
+                else
+                    fab.setVisibility(View.GONE);
+
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+
+        //load more data
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Parser parser = new Parser();
+                if (nextToken != null) {
+                    String url = parser.generateMoreDataRequest(CHANNEL_ID, 20, Parser.ORDER_DATE, API_KEY, nextToken);
+                    parser.execute(url);
+                    parser.onFinish(new Parser.OnTaskCompleted() {
+                        @Override
+                        public void onTaskCompleted(ArrayList<Video> list, String nextPageToken) {
+
+                            //update the adapter with the new data
+                            vAdapter.getList().addAll(list);
+                            totalElement = vAdapter.getItemCount();
+                            nextToken = nextPageToken;
+                            vAdapter.notifyDataSetChanged();
+                            Toast.makeText(MainActivity.this, "New video added!", Toast.LENGTH_SHORT).show();
+                            fab.setVisibility(View.GONE);
+                            mRecyclerView.scrollBy(0, 1000);
+                        }
+
+                        @Override
+                        public void onError() {
+                            Toast.makeText(MainActivity.this, "Error while loading data. Please retry", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                } else {
+                    Toast.makeText(MainActivity.this, "Unable to load data. Please retry", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     public boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager
-                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
@@ -115,39 +170,29 @@ public class MainActivity extends AppCompatActivity {
     public void loadVideo() {
 
         if (!mSwipeRefreshLayout.isRefreshing())
-            progressWheel.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
 
         Parser parser = new Parser();
-        //set Channel ID, number of result to show, Broswer API Key
-        String url = parser.generateRequest("UCVHFbqXqoYvEWM1Ddxl0QDg", 20, "YOUR BROSWER API KEY");
+        String url = parser.generateRequest(CHANNEL_ID, 20, Parser.ORDER_DATE, API_KEY);
+
         parser.execute(url);
         parser.onFinish(new Parser.OnTaskCompleted() {
-            //what to do when the parsing is done
             @Override
-            public void onTaskCompleted(ArrayList<Video> list) {
+            public void onTaskCompleted(ArrayList<com.prof.youtubeparser.models.videos.Video> list, String nextPageToken) {
                 //list is an ArrayList with all video's item
                 //set the adapter to recycler view
-                vAdapter = new VideoAdapter(list, R.layout.yt_row, MainActivity.this );
+                vAdapter = new VideoAdapter(list, R.layout.yt_row, MainActivity.this);
                 mRecyclerView.setAdapter(vAdapter);
+                totalElement = vAdapter.getItemCount();
+                nextToken = nextPageToken;
                 vAdapter.notifyDataSetChanged();
-                progressWheel.setVisibility(View.GONE);
+                progressBar.setVisibility(View.GONE);
                 mSwipeRefreshLayout.setRefreshing(false);
             }
 
-            //what to do in case of error
             @Override
             public void onError() {
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressWheel.setVisibility(View.GONE);
-                        mSwipeRefreshLayout.setRefreshing(false);
-                        Toast.makeText(MainActivity.this, "Unable to load data. Swipe down to retry",
-                                Toast.LENGTH_SHORT).show();
-                        Log.i("YoutubeParser", "Unable to load video's data");
-                    }
-                });
+                Toast.makeText(MainActivity.this, "Error while loading data. Please retry", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -170,7 +215,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -193,8 +237,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
             alertDialog.show();
-
-          ((TextView) alertDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+            ((TextView) alertDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
         }
 
         return super.onOptionsItemSelected(item);

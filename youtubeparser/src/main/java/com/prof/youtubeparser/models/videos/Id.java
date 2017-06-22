@@ -15,47 +15,37 @@
 *   
 */
 
-package com.prof.youtubeparser.models;
+package com.prof.youtubeparser.models.videos;
 
 /**
- * Created by marco on 5/7/16.
- */
-public class High {
+ * Created by Marco Gomiero on 5/7/16.
+ **/
+public class Id {
 
-    private String url;
-    private Integer width;
-    private Integer height;
+    private String kind;
+    private String videoId;
 
-    public String getUrl() {
-        return url;
+    public String getKind() {
+        return kind;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setKind(String kind) {
+        this.kind = kind;
     }
 
-    public Integer getWidth() {
-        return width;
+    public String getVideoId() {
+        return videoId;
     }
 
-    public void setWidth(Integer width) {
-        this.width = width;
-    }
-
-    public Integer getHeight() {
-        return height;
-    }
-
-    public void setHeight(Integer height) {
-        this.height = height;
+    public void setVideoId(String videoId) {
+        this.videoId = videoId;
     }
 
     @Override
     public String toString() {
-        return "High{" +
-                "url='" + url + '\'' +
-                ", width=" + width +
-                ", height=" + height +
+        return "Id{" +
+                "kind='" + kind + '\'' +
+                ", videoId='" + videoId + '\'' +
                 '}';
     }
 }

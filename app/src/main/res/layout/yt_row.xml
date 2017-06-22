@@ -22,7 +22,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
-    android:layout_height="220dp"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="10dp"
     android:foreground="?android:selectableItemBackground"
@@ -44,18 +44,8 @@
             android:scaleType="centerCrop"
             android:tint="@color/photo_tint"/>
 
-        <ImageView
-            android:id="@+id/play"
-            android:layout_width="fill_parent"
-            android:layout_height="120dp"
-            android:background="?android:selectableItemBackground"
-            android:contentDescription="@string/app_name"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_play_circle_filled_black_24dp" />
-
-
         <TextView
-           android:id="@+id/title"
+            android:id="@id/title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -77,10 +67,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/title"
-            android:gravity="center|right"
+            android:gravity="center|end|bottom"
             android:paddingBottom="6.0dip"
             android:paddingLeft="6.0dip"
             android:paddingRight="6.0dip"

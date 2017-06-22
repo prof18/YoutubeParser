@@ -15,14 +15,14 @@
 *   
 */
 
-package com.prof.youtubeparser.models;
+package com.prof.youtubeparser.models.videos;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by marco on 5/7/16.
- */
+ * Created by Marco Gomiero on 5/7/16.
+ **/
 public class Main {
 
     private String kind;

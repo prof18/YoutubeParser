@@ -3,14 +3,14 @@ apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '25.0.0'
+    compileSdkVersion 25
+    buildToolsVersion '25.0.3'
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 25
+        versionCode 3
+        versionName "2.0"
     }
     buildTypes {
         release {
@@ -23,15 +23,13 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
-    compile 'com.google.code.gson:gson:2.4'
-    compile 'com.pnikosis:materialish-progress:1.7'
-
+    compile 'com.google.code.gson:gson:2.7'
 }
 
 group = 'com.prof.youtubeparser'
-version = '1.1'
+version = '2.0'
 
 task generateSourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -53,19 +51,20 @@ generateJavadocsJar.dependsOn generateJavadocs
 
 bintray {
     user = 'prof18'
-    key = 'API KEY'
+    //TODO: add api key
+    key = ''
     pkg {
         repo = 'maven'
         name = 'YoutubeParser'
 
         version {
-            name = '1.1'
+            name = '2.0'
             desc = 'A library to parse Youtube video'
-            released = new Date()
-            vcsTag = '1.1'
+            released = '2017-06-22T20:35:16.741+0200'
+            vcsTag = '2.0'
         }
 
-        licenses = ['MIT']
+        licenses = ['Apache-2.0']
         vcsUrl = 'https://github.com/prof18/YoutubeParser.git'
         websiteUrl = 'https://github.com/prof18/YoutubeParser'
     }

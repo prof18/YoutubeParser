@@ -15,11 +15,11 @@
 *   
 */
 
-package com.prof.youtubeparser.models;
+package com.prof.youtubeparser.models.videos;
 
 /**
- * Created by marco on 5/7/16.
- */
+ * Created by Marco Gomiero on 5/7/16.
+ **/
 public class Thumbnails {
 
     private Default _default;

@@ -12,50 +12,41 @@
 *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 *   See the License for the specific language governing permissions and
 *   limitations under the License.
-*   
+*
 */
 
-package com.prof.youtubeparser.models;
+package com.prof.youtubeparser.models.stats;
 
 /**
- * Created by marco on 5/7/16.
- */
-public class Medium {
+ * Created by Marco Gomiero on 19/06/2017.
+ **/
 
-    private String url;
-    private Integer width;
-    private Integer height;
+public class PageInfo {
 
-    public String getUrl() {
-        return url;
+    private int totalResults;
+    private int resultsPerPage;
+
+    public int getTotalResults() {
+        return totalResults;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setTotalResults(int totalResults) {
+        this.totalResults = totalResults;
     }
 
-    public Integer getWidth() {
-        return width;
+    public int getResultsPerPage() {
+        return resultsPerPage;
     }
 
-    public void setWidth(Integer width) {
-        this.width = width;
-    }
-
-    public Integer getHeight() {
-        return height;
-    }
-
-    public void setHeight(Integer height) {
-        this.height = height;
+    public void setResultsPerPage(int resultsPerPage) {
+        this.resultsPerPage = resultsPerPage;
     }
 
     @Override
     public String toString() {
-        return "Medium{" +
-                "url='" + url + '\'' +
-                ", width=" + width +
-                ", height=" + height +
+        return "PageInfo{" +
+                "totalResults=" + totalResults +
+                ", resultsPerPage=" + resultsPerPage +
                 '}';
     }
 }

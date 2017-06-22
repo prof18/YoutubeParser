@@ -15,7 +15,7 @@
 *   
 */
 
-package com.prof.youtubeparser.models;
+package com.prof.youtubeparser.models.videos;
 
 /**
  * Created by marco on 5/7/16.
@@ -26,6 +26,7 @@ public class Video {
     private String videoId;
     private String coverLink;
     private String date;
+
 
     public Video(String title, String videoId, String coverLink, String date) {
 
