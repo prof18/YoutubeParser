@@ -23,6 +23,7 @@ Parser parser = new Parser();
 
 //(CHANNEL_ID, NUMBER_OF_RESULT_TO_SHOW, ORDER_TYPE ,BROSWER_API_KEY)
 //https://www.youtube.com/channel/UCVHFbqXqoYvEWM1Ddxl0QDg --> channel id = UCVHFbqXqoYvEWM1Ddxl0QDg
+//The maximum number of result to show is 50
 //ORDER_TYPE --> by date: "Parser.ORDER_DATE" or by number of views: "ORDER_VIEW_COUNT"  
 String url = parser.generateRequest(CHANNEL_ID, 20, Parser.ORDER_DATE, API_KEY);
 parser.execute(url);
@@ -47,7 +48,7 @@ To create a BROSWER API KEY you can follow
 ```Java
 String url = parser.generateMoreDataRequest(CHANNEL_ID, 20, Parser.ORDER_DATE, API_KEY, nextToken);
 ```
-Remember that this request can be made only AFTER the a previous one, because you need the nextPageToken
+Remember that this request can be made only AFTER the a previous one, because you need the nextPageToken. Remember also that every request can get a maximum of 50 elements.
 
 ##### To get the statistics of a video:
 ```Java
