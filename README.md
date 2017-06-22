@@ -10,7 +10,7 @@ This is an Android library to get information of videos from Youtube channels. Y
 The library is uploaded in jCenter, so you can easily add the dependency:
 ```Gradle
 dependencies {
-  compile 'com.prof.youtubeparser:youtubeparser:2'
+  compile 'com.prof.youtubeparser:youtubeparser:2.0'
 }
 ```
 #### Usage:
