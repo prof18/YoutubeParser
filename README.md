@@ -86,7 +86,8 @@ You can browse the code <a href="https://github.com/prof18/YoutubeParser/tree/ma
 You can also download the <a href="https://github.com/prof18/YoutubeParser/blob/master/YoutubeParser.apk"> apk file</a> to try it!
 
 ## Changelog
-- 22 June 2016 - Big update: now you can load more video and get the statistic of a video - Version 2.0
+- 12 August 2017 - Fixed Library Manifest - Version 2.1
+- 22 June 2017 - Big update: now you can load more video and get the statistic of a video - Version 2.0
 - 17 June 2016 - Fixed a bug on Locale - Version 1.1
 - 15 June 2016 - First release  - Version 1.0
 
