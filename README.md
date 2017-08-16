@@ -85,6 +85,8 @@ I wrote a simple app that shows videos from Android Developer Youtube Channel.
 You can browse the code <a href="https://github.com/prof18/YoutubeParser/tree/master/app"> in this repo.</a>
 You can also download the <a href="https://github.com/prof18/YoutubeParser/blob/master/YoutubeParser.apk"> apk file</a> to try it!
 
+Please use the issues tracker only to report issues. If you have any kind of question you can ask them on [the blog post on my website](http://www.marcogomiero.com/blog/update-yt-parser-2/)
+
 ## Changelog
 - 12 August 2017 - Fixed Library Manifest - Version 2.1
 - 22 June 2017 - Big update: now you can load more video and get the statistic of a video - Version 2.0
