@@ -10,7 +10,7 @@ This is an Android library to get information of videos from Youtube channels. Y
 The library is uploaded in jCenter, so you can easily add the dependency:
 ```Gradle
 dependencies {
-  compile 'com.prof.youtubeparser:youtubeparser:2.0'
+  compile 'com.prof.youtubeparser:youtubeparser:2.2'
 }
 ```
 #### Usage:
@@ -88,6 +88,7 @@ You can also download the <a href="https://github.com/prof18/YoutubeParser/blob/
 Please use the issues tracker only to report issues. If you have any kind of question you can ask them on [the blog post on my website](http://www.marcogomiero.com/blog/update-yt-parser-2/)
 
 ## Changelog
+- 14 December 2017 - Improved Error Management - Version 2.2
 - 12 August 2017 - Fixed Library Manifest - Version 2.1
 - 22 June 2017 - Big update: now you can load more video and get the statistic of a video - Version 2.0
 - 17 June 2016 - Fixed a bug on Locale - Version 1.1
