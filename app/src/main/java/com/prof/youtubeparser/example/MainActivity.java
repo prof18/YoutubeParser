@@ -62,18 +62,18 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        progressBar = findViewById(R.id.progressBar);
+        fab = findViewById(R.id.fab);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.list);
+        mRecyclerView = findViewById(R.id.list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setHasFixedSize(true);
 
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.container);
+        mSwipeRefreshLayout = findViewById(R.id.container);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorPrimaryDark);
         mSwipeRefreshLayout.canChildScrollUp();
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -192,7 +192,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onError() {
-                Toast.makeText(MainActivity.this, "Error while loading data. Please retry", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Error while loading data. Please retry", Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.GONE);
+                mSwipeRefreshLayout.setRefreshing(false);
             }
         });
     }

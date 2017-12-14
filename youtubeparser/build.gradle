@@ -3,14 +3,14 @@ apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.3'
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 25
-        versionCode 4
-        versionName "2.1"
+        targetSdkVersion 26
+        versionCode 5
+        versionName "2.2"
     }
     buildTypes {
         release {
@@ -23,13 +23,13 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.squareup.okhttp3:okhttp:3.2.0'
-    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.squareup.okhttp3:okhttp:3.8.0'
+    compile 'com.google.code.gson:gson:2.8.0'
 }
 
 group = 'com.prof.youtubeparser'
-version = '2.1'
+version = '2.2'
 
 task generateSourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -52,16 +52,16 @@ generateJavadocsJar.dependsOn generateJavadocs
 bintray {
     user = 'prof18'
     //TODO: add api key
-    key = ''
+    key = 'API_KEY'
     pkg {
         repo = 'maven'
         name = 'YoutubeParser'
 
         version {
-            name = '2.1'
+            name = '2.2'
             desc = 'A library to parse Youtube video'
             released = new Date()
-            vcsTag = '2.1'
+            vcsTag = '2.2'
         }
 
         licenses = ['Apache-2.0']

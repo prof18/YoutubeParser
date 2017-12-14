@@ -140,10 +140,6 @@ public class Parser extends AsyncTask<String, Void, String> {
         return urlString;
     }
 
-    public interface OnTaskCompleted {
-        void onTaskCompleted(ArrayList<Video> list, String nextPageToken);
-        void onError();
-    }
 
     public void onFinish(OnTaskCompleted onComplete) {
         this.onComplete = onComplete;
@@ -160,8 +156,8 @@ public class Parser extends AsyncTask<String, Void, String> {
 
         try {
             response = client.newCall(request).execute();
-            return response.body().string();
-
+            if (response.isSuccessful())
+                return response.body().string();
         } catch (IOException e) {
             e.printStackTrace();
             onComplete.onError();
@@ -172,55 +168,65 @@ public class Parser extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
 
-        try {
+        if (result != null) {
 
-            ArrayList<Video> videos = new ArrayList<>();
+            try {
 
-            Gson gson = new GsonBuilder().create();
-            Main data = gson.fromJson(result, Main.class);
+                ArrayList<Video> videos = new ArrayList<>();
 
-            //Begin parsing Json data
-            List<Item> itemList = data.getItems();
-            String nextToken = data.getNextPageToken();
+                Gson gson = new GsonBuilder().create();
+                Main data = gson.fromJson(result, Main.class);
 
-            for (int i = 0; i < itemList.size(); i++) {
+                //Begin parsing Json data
+                List<Item> itemList = data.getItems();
+                String nextToken = data.getNextPageToken();
 
-                Item item = itemList.get(i);
-                Snippet snippet = item.getSnippet();
+                for (int i = 0; i < itemList.size(); i++) {
 
-                Id id = item.getId();
+                    Item item = itemList.get(i);
+                    Snippet snippet = item.getSnippet();
 
-                Thumbnails image = snippet.getThumbnails();
+                    Id id = item.getId();
 
-                High high = image.getHigh();
+                    Thumbnails image = snippet.getThumbnails();
 
-                String title = snippet.getTitle();
-                String videoId = id.getVideoId();
-                String imageLink = high.getUrl();
-                String sDate = snippet.getPublishedAt();
+                    High high = image.getHigh();
 
-                Locale.setDefault(Locale.getDefault());
-                TimeZone tz = TimeZone.getDefault();
-                Calendar cal = Calendar.getInstance(tz);
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-                sdf.setCalendar(cal);
-                cal.setTime(sdf.parse(sDate));
-                Date date = cal.getTime();
+                    String title = snippet.getTitle();
+                    String videoId = id.getVideoId();
+                    String imageLink = high.getUrl();
+                    String sDate = snippet.getPublishedAt();
 
-                SimpleDateFormat sdf2 = new SimpleDateFormat("dd MMMM yyyy");
-                String pubDateString = sdf2.format(date);
+                    Locale.setDefault(Locale.getDefault());
+                    TimeZone tz = TimeZone.getDefault();
+                    Calendar cal = Calendar.getInstance(tz);
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+                    sdf.setCalendar(cal);
+                    cal.setTime(sdf.parse(sDate));
+                    Date date = cal.getTime();
 
-                Video tempVideo = new Video(title, videoId, imageLink, pubDateString);
-                videos.add(tempVideo);
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("dd MMMM yyyy");
+                    String pubDateString = sdf2.format(date);
+
+                    Video tempVideo = new Video(title, videoId, imageLink, pubDateString);
+                    videos.add(tempVideo);
+                }
+
+                Log.i("YoutubeParser", "Youtube data parsed correctly!");
+                onComplete.onTaskCompleted(videos, nextToken);
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+                onComplete.onError();
             }
-
-            Log.i("YoutubeParser", "Youtube data parsed correctly!");
-            onComplete.onTaskCompleted(videos, nextToken);
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
+        } else
             onComplete.onError();
-        }
+    }
+
+
+    public interface OnTaskCompleted {
+        void onTaskCompleted(ArrayList<Video> list, String nextPageToken);
+        void onError();
     }
 }

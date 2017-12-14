@@ -48,19 +48,13 @@ public class VideoStats extends AsyncTask<String, Void, String> {
      *
      * @param videoID The ID of the youtube video
      * @param key     Your Browser API key. Obtain one by visiting https://console.developers.google.com
-     * @return  The url required to get video statistic
+     * @return The url required to get video statistic
      */
     public String generateStatsRequest(String videoID, String key) {
 
         String urlString = "https://www.googleapis.com/youtube/v3/videos?key=";
         urlString = urlString + key + "&part=statistics&id=" + videoID;
         return urlString;
-    }
-
-    public interface OnTaskCompleted {
-        void onTaskCompleted(Statistics stats);
-
-        void onError();
     }
 
     public void onFinish(OnTaskCompleted onComplete) {
@@ -78,7 +72,8 @@ public class VideoStats extends AsyncTask<String, Void, String> {
 
         try {
             response = client.newCall(request).execute();
-            return response.body().string();
+            if (response.isSuccessful())
+                return response.body().string();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -90,21 +85,28 @@ public class VideoStats extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
 
-        try {
+        if (result != null) {
 
-            Gson gson = new GsonBuilder().create();
-            Main data = gson.fromJson(result, Main.class);
+            try {
+                Gson gson = new GsonBuilder().create();
+                Main data = gson.fromJson(result, Main.class);
 
-            List<Item> itemList = data.getItems();
-            Statistics stats = itemList.get(0).getStatistics();
+                List<Item> itemList = data.getItems();
+                Statistics stats = itemList.get(0).getStatistics();
 
-            Log.i("YoutubeParser", "Video stats parsed correctly");
-            onComplete.onTaskCompleted(stats);
+                Log.i("YoutubeParser", "Video stats parsed correctly");
+                onComplete.onTaskCompleted(stats);
 
-        } catch (Exception e) {
-
-            e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+                onComplete.onError();
+            }
+        } else
             onComplete.onError();
-        }
+    }
+
+    public interface OnTaskCompleted {
+        void onTaskCompleted(Statistics stats);
+        void onError();
     }
 }
