@@ -1,17 +1,17 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'kotlin-android'
+
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 26
-        versionCode 5
-        versionName "2.2"
+        minSdkVersion 14
+        targetSdkVersion 28
+        versionCode 30000
+        versionName "3.0.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -21,58 +21,15 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.squareup.okhttp3:okhttp:3.8.0'
-    compile 'com.google.code.gson:gson:2.8.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.0'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.0"
 }
 
-group = 'com.prof.youtubeparser'
-version = '2.2'
 
-task generateSourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier 'sources'
-}
-
-task generateJavadocs(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath()
-            .join(File.pathSeparator))
-}
-
-task generateJavadocsJar(type: Jar) {
-    from generateJavadocs.destinationDir
-    classifier 'javadoc'
-}
-
-generateJavadocsJar.dependsOn generateJavadocs
-
-bintray {
-    user = 'prof18'
-    //TODO: add api key
-    key = 'API_KEY'
-    pkg {
-        repo = 'maven'
-        name = 'YoutubeParser'
-
-        version {
-            name = '2.2'
-            desc = 'A library to parse Youtube video'
-            released = new Date()
-            vcsTag = '2.2'
-        }
-
-        licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/prof18/YoutubeParser.git'
-        websiteUrl = 'https://github.com/prof18/YoutubeParser'
-    }
-    configurations = ['archives']
-
-}
-
-artifacts {
-    archives generateJavadocsJar
-    archives generateSourcesJar
+apply from: 'publish.gradle'
+repositories {
+    mavenCentral()
 }
