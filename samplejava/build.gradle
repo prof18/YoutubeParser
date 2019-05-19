@@ -9,6 +9,9 @@ android {
         targetSdkVersion versions.targetSdk
         versionCode 30000
         versionName "3.0.0"
+
+        buildConfigField "String", "KEY", "\""+getKey()+"\""
+
     }
     buildTypes {
         release {
