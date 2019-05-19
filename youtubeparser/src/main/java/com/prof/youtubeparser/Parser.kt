@@ -1,5 +1,14 @@
 package com.prof.youtubeparser
 
+import com.prof.youtubeparser.engine.JsonFetcher
+import com.prof.youtubeparser.engine.JsonVideoParser
+import com.prof.youtubeparser.enginecoroutines.CoroutineEngine
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.withContext
+import java.util.concurrent.Executors
+import kotlin.Exception
+
 class Parser {
 
     private lateinit var onComplete: OnTaskCompleted
@@ -68,12 +77,35 @@ class Parser {
         this.onComplete = onComplete
     }
 
-    // TODO: java compatibility
-    fun execute() {
-
+    fun execute(url: String) {
+        Executors.newSingleThreadExecutor().submit {
+            val service = Executors.newFixedThreadPool(2)
+            val f1 = service.submit(JsonFetcher(url))
+            try {
+                val videoJson = f1.get()
+                val f2 = service.submit(JsonVideoParser(videoJson))
+                onComplete.onTaskCompleted(f2.get().videos, f2.get().nextToken)
+            } catch (e: Exception) {
+                onComplete.onError()
+            } finally {
+                service.shutdown()
+            }
+        }
     }
 
-    // TODO: java method
+    @Throws(Exception::class)
+    suspend fun getVideos(url: String) =
+            withContext(Dispatchers.IO) {
+                val json = async { CoroutineEngine.fetchJson(url) }
+                return@withContext CoroutineEngine.parseVideo(json)
+            }
+
+   /* @Throws(Exception::class)
+    suspend fun getStats(url: String) =
+            withContext(Dispatchers.IO) {
+                val json = async { CoroutineEngine.fetchJson(url) }
+                return@withContext CoroutineEngine.parseStats(json)
+            }*/
 
     companion object {
         const val BASE_ADDRESS = "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId="

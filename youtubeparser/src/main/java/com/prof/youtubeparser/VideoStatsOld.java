@@ -39,7 +39,7 @@ import okhttp3.Response;
  * Created by Marco Gomiero on 19/06/2017.
  */
 
-public class VideoStats extends AsyncTask<String, Void, String> {
+public class VideoStatsOld extends AsyncTask<String, Void, String> {
 
     private OnTaskCompleted onComplete;
 

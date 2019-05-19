@@ -86,19 +86,8 @@ public class ParserOld extends AsyncTask<String, Void, String> {
         return urlString;
     }*/
 
-    /**
-     * This method generates the url to retrieve more video data. Remember that first you have to call
-     * {@link #generateRequest(String, int, int, String)} to get the next page token
-     *
-     * @param channelID The ID of the desired channel. Ex: https://www.youtube.com/channel/UCVHFbqXqoYvEWM1Ddxl0QDg
-     *                  channel id = UCVHFbqXqoYvEWM1Ddxl0QDg
-     * @param maxResult The number of video to get. The maximum value is 50
-     * @param orderType The type of ordering. You can choose an order by date: {@link #ORDER_DATE} and by view count {@link #ORDER_VIEW_COUNT}.
-     * @param key       Your Browser API key. Obtain one by visiting https://console.developers.google.com
-     * @param nextToken The token necessary to load more data
-     * @return The url required to get more data
-     */
-    public String generateMoreDataRequest(String channelID, int maxResult, int orderType, String key, String nextToken) {
+
+   /* public String generateMoreDataRequest(String channelID, int maxResult, int orderType, String key, String nextToken) {
 
         String urlString = "https://www.googleapis.com/youtube/v3/search?pageToken=";
         String order = "";
@@ -120,7 +109,7 @@ public class ParserOld extends AsyncTask<String, Void, String> {
                 + maxResult + "&order=" + order + "&key=" + key;
         return urlString;
     }
-
+*/
 
     public void onFinish(OnTaskCompleted onComplete) {
         this.onComplete = onComplete;
