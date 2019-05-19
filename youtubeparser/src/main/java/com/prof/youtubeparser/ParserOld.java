@@ -48,42 +48,23 @@ import okhttp3.Response;
  * <p>
  * Created by Marco Gomiero on 6/9/16.
  */
-public class Parser extends AsyncTask<String, Void, String> {
+public class ParserOld extends AsyncTask<String, Void, String> {
 
     private OnTaskCompleted onComplete;
     public static final int ORDER_DATE = 1;
     public static final int ORDER_VIEW_COUNT = 2;
 
-    /**
-     * This method generates the url that retrieves Youtube video data
-     *
-     * @param channelID The ID of the desired channel. Ex: https://www.youtube.com/channel/UCVHFbqXqoYvEWM1Ddxl0QDg
-     *                  channel id = UCVHFbqXqoYvEWM1Ddxl0QDg
-     * @param maxResult The number of video to get
-     * @param key       Your Browser API key. Obtain one by visiting https://console.developers.google.com
-     * @return The url required to get data
-     * @deprecated This method is deprecated. Please use the new version that allows to choose the
-     * type of order of the videos: {@link #generateRequest(String, int, int, String)}
-     */
-    @Deprecated
+
+/*    @Deprecated
     public String generateRequest(String channelID, int maxResult, String key) {
 
         String urlString = "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=";
         urlString = urlString + channelID + "&maxResults=" + maxResult + "&order=date&key=" + key;
         return urlString;
-    }
+    }*/
 
-    /**
-     * This method generates the url to retrieve Youtube Video data
-     *
-     * @param channelID The ID of the desired channel. Ex: https://www.youtube.com/channel/UCVHFbqXqoYvEWM1Ddxl0QDg
-     *                  channel id = UCVHFbqXqoYvEWM1Ddxl0QDg
-     * @param maxResult The number of video to get. The maximum value is 50
-     * @param orderType The type of ordering. You can choose an order by date: {@link #ORDER_DATE} and by view count {@link #ORDER_VIEW_COUNT}.
-     * @param key       Your Browser API key. Obtain one by visiting https://console.developers.google.com
-     * @return The url required to get data
-     */
-    public String generateRequest(String channelID, int maxResult, int orderType, String key) {
+
+/*    public String generateRequest(String channelID, int maxResult, int orderType, String key) {
 
         String urlString = "https://www.googleapis.com/youtube/v3/search?&part=snippet&channelId=";
         String order = "";
@@ -103,7 +84,7 @@ public class Parser extends AsyncTask<String, Void, String> {
 
         urlString = urlString + channelID + "&maxResults=" + maxResult + "&order=" + order + "&key=" + key;
         return urlString;
-    }
+    }*/
 
     /**
      * This method generates the url to retrieve more video data. Remember that first you have to call
