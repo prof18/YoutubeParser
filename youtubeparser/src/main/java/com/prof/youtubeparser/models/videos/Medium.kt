@@ -18,7 +18,7 @@
 package com.prof.youtubeparser.models.videos
 
 data class Medium(
-        var url: String,
-        var width: Int,
-        var height: Int
+        var url: String? = null,
+        var width: Int? = null,
+        var height: Int? = null
 )

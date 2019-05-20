@@ -18,11 +18,11 @@
 package com.prof.youtubeparser.models.videos
 
 data class Snippet(
-        var publishedAt: String,
-        var channelId: String,
-        var title: String,
-        var description: String,
-        var thumbnails: Thumbnails,
-        var channelTitle: String,
-        var liveBroadcastContent: String
+        var publishedAt: String? = null,
+        var channelId: String? = null,
+        var title: String? = null,
+        var description: String? = null,
+        var thumbnails: Thumbnails? = null,
+        var channelTitle: String? = null,
+        var liveBroadcastContent: String? = null
 )

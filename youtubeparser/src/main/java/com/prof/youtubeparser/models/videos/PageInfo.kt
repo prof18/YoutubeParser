@@ -18,6 +18,6 @@
 package com.prof.youtubeparser.models.videos
 
 data class PageInfo(
-        var totalResults: Int,
-        var resultsPerPage: Int
+        var totalResults: Int? = null,
+        var resultsPerPage: Int? = null
 )

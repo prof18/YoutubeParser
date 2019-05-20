@@ -18,7 +18,7 @@
 package com.prof.youtubeparser.models.videos
 
 data class Thumbnails(
-    var default: Default,
-    var medium: Medium,
-    var high: High
+    var default: Default? = null,
+    var medium: Medium? = null,
+    var high: High? = null
 )

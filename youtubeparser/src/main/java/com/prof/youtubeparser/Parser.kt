@@ -20,6 +20,7 @@ package com.prof.youtubeparser
 import com.prof.youtubeparser.engine.JsonFetcher
 import com.prof.youtubeparser.engine.JsonVideoParser
 import com.prof.youtubeparser.enginecoroutines.CoroutineEngine
+import com.prof.youtubeparser.models.videos.Video
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
@@ -103,7 +104,7 @@ class Parser {
                 val f2 = service.submit(JsonVideoParser(videoJson))
                 onComplete.onTaskCompleted(f2.get().videos, f2.get().nextToken)
             } catch (e: Exception) {
-                onComplete.onError()
+                onComplete.onError(e)
             } finally {
                 service.shutdown()
             }
@@ -117,16 +118,14 @@ class Parser {
                 return@withContext CoroutineEngine.parseVideo(json)
             }
 
-   /* @Throws(Exception::class)
-    suspend fun getStats(url: String) =
-            withContext(Dispatchers.IO) {
-                val json = async { CoroutineEngine.fetchJson(url) }
-                return@withContext CoroutineEngine.parseStats(json)
-            }*/
-
     companion object {
         const val BASE_ADDRESS = "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId="
         const val ORDER_DATE = 1
         const val ORDER_VIEW_COUNT = 2
+    }
+
+    interface OnTaskCompleted {
+        fun onTaskCompleted(list: MutableList<Video>, nextPageToken: String?)
+        fun onError(e: Exception)
     }
 }

@@ -18,10 +18,10 @@
 package com.prof.youtubeparser.models.videos
 
 data class Main(
-        var kind: String,
-        var etag: String,
-        var nextPageToken: String,
-        var regionCode: String,
-        var pageInfo: PageInfo,
+        var kind: String? = null,
+        var etag: String? = null,
+        var nextPageToken: String? = null,
+        var regionCode: String? = null,
+        var pageInfo: PageInfo? = null,
         var items: List<Item> = mutableListOf()
 )

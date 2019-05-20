@@ -47,11 +47,11 @@ object CoreJsonParser {
 
             val image = snippet!!.thumbnails
 
-            val high = image.high
+            val high = image?.high
 
             val title = snippet.title
-            val videoId = id.videoId
-            val imageLink = high.url
+            val videoId = id?.videoId
+            val imageLink = high?.url
             val sDate = snippet.publishedAt
 
             Locale.setDefault(Locale.getDefault())

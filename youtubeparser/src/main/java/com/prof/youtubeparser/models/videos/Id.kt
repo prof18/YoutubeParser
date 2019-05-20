@@ -18,6 +18,6 @@
 package com.prof.youtubeparser.models.videos
 
 data class Id(
-        var kind: String,
-        var videoId: String
+        var kind: String? = null,
+        var videoId: String? = null
 )

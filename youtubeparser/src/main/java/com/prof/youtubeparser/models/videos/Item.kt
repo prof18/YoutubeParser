@@ -18,8 +18,8 @@
 package com.prof.youtubeparser.models.videos
 
 data class Item(
-        var kind: String,
-        var etag: String,
-        var id: Id,
-        var snippet: Snippet?
+        var kind: String? = null,
+        var etag: String? = null,
+        var id: Id? = null,
+        var snippet: Snippet? = null
 )

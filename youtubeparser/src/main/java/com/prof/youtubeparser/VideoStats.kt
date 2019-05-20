@@ -20,6 +20,7 @@ package com.prof.youtubeparser
 import com.prof.youtubeparser.engine.JsonFetcher
 import com.prof.youtubeparser.engine.JsonStatsParser
 import com.prof.youtubeparser.enginecoroutines.CoroutineEngine
+import com.prof.youtubeparser.models.stats.Statistics
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
@@ -49,11 +50,15 @@ class VideoStats {
                 val f2 = service.submit(JsonStatsParser(videoJson))
                 onComplete.onTaskCompleted(f2.get())
             } catch (e: Exception) {
-                onComplete.onError()
+                onComplete.onError(e)
             } finally {
                 service.shutdown()
             }
         }
+    }
+
+    fun onFinish(onComplete: OnTaskCompleted) {
+        this.onComplete = onComplete
     }
 
     @Throws(Exception::class)
@@ -67,4 +72,9 @@ class VideoStats {
         const val BASE_ADDRESS = "https://www.googleapis.com/youtube/v3/videos?key="
     }
 
+    interface OnTaskCompleted {
+        fun onTaskCompleted(statistics: Statistics)
+        fun onError(e: Exception)
+    }
 }
+
