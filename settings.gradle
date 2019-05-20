@@ -1,1 +1,1 @@
-include ':app', ':youtubeparser'
+include ':app', ':youtubeparser', ':samplejava', ':samplekotlin'
