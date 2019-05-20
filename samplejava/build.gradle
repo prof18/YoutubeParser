@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion versions.compileSdk
+
+    defaultConfig {
+        applicationId "com.prof.youtubeparser.sample.java"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode 30000
+        versionName "3.0.0"
+
+        buildConfigField "String", "KEY", "\""+getKey()+"\""
+
+        vectorDrawables.useSupportLibrary = true
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    implementation project(":youtubeparser")
+//    implementation "com.prof.youtubeparser:youtubeparser:${versions.libVersionName}"
+
+    // UI
+    implementation "androidx.appcompat:appcompat:${versions.appCompat}"
+    implementation "com.google.android.material:material:${versions.material}"
+    implementation "androidx.recyclerview:recyclerview:${versions.androidX}"
+    implementation "androidx.cardview:cardview:${versions.androidX}"
+    implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
+
+    // Architecture components
+    implementation "androidx.lifecycle:lifecycle-runtime:${versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}"
+
+    implementation "com.squareup.picasso:picasso:${versions.picasso}"
+    implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"
+
+}
+
