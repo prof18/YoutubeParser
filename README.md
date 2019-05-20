@@ -6,21 +6,21 @@
 This is an Android library to get information of videos from Youtube channels. You can retrieve title, link and thumbnail of a video from a specific channel. You can also get the statistics of a video like view, like, dislike, favorite and comment count. Now it is also possible to load more videos by making a new request.
 
 ## How to
-#### Import:
+### Import:
 The library is uploaded in jCenter, so you can easily add the dependency:
 ```Gradle
 dependencies {
   compile 'com.prof.youtubeparser:youtubeparser:3.0.0'
 }
 ```
-#### Usage:
+### Usage:
 
-ting from the version 3.x, the library has been completely rewritten using Kotlin and the coroutines. However, The compatibility with Java has been maintained and the same code of the versions 2.x (and below) can be used.  
+Starting from the version 3.x, the library has been completely rewritten using Kotlin and the coroutines. However, The compatibility with Java has been maintained and the same code of the versions 2.x (and below) can be used.  
 
 If you are using Kotlin you need to [launch](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html) the coroutine that retrieves the videos. 
 
 
-##### To load videos from a specific channel:
+#### To load videos from a specific channel:
 
 ```kotlin
 import com.prof.youtubeparser.Parser
@@ -74,7 +74,6 @@ mParser.onFinish(new Parser.OnTaskCompleted() {
 //https://www.youtube.com/channel/UCVHFbqXqoYvEWM1Ddxl0QDg --> channel id = UCVHFbqXqoYvEWM1Ddxl0QDg
 //The maximum number of result to show is 50
 //ORDER_TYPE --> by date: "Parser.ORDER_DATE" or by number of views: "ORDER_VIEW_COUNT"  
-
 String requestUrl = mParser.generateRequest(
             CHANNEL_ID,
             20,
@@ -86,7 +85,7 @@ mParser.execute(requestUrl);
 
 ```
 
-###### Version 2.2 and belows:
+##### Version 2.2 and belows:
 
 ```java
 import com.prof.youtubeparser.Parser;
@@ -117,7 +116,7 @@ parser.onFinish(new Parser.OnTaskCompleted() {
 To create a BROSWER API KEY you can follow
 <a href="https://support.google.com/cloud/answer/6158862?hl=en#creating-browser-api-keys"> this guide.</a>
 
-##### To load more videos from the same channel:
+#### To load more videos from the same channel:
 
 To load more videos, you can use the same method described above but with the following URL: 
 
@@ -143,7 +142,7 @@ String requestUrl = mParser.generateMoreDataRequest(
 ```
 Remember that this request can be made only AFTER the a previous one, because you need the nextPageToken. Remember also that every request can get a maximum of 50 elements.
 
-##### To get the statistics of a video:
+#### To get the statistics of a video:
 
 If you are using Kotlin you need to [launch](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html) the coroutine that retrieves the videos. 
 
@@ -197,7 +196,7 @@ String requestUrl = videoStats.generateStatsRequest(videoId, BuildConfig.KEY);
 videoStats.execute(requestUrl);
 ```
 
-###### Version 2.2 and belows:
+##### Version 2.2 and belows:
 
 
 ```Java
@@ -231,10 +230,10 @@ I wrote a simple app that shows videos from Android Developer Youtube Channel.
 
 <img src="https://raw.githubusercontent.com/prof18/YoutubeParser/master/Screen.png" width="30%" height="30%">
 
-You can browse the code <a href="https://github.com/prof18/YoutubeParser/tree/master/app"> in this repo.</a>
+The sample is written both in Kotlin and Java. You can browse the Kotlin code [here](https://github.com/prof18/YoutubeParser/tree/master/samplekotlin) and the Java code [here](https://github.com/prof18/YoutubeParser/tree/master/samplejava)
 You can also download the <a href="https://github.com/prof18/YoutubeParser/blob/master/YoutubeParser.apk"> apk file</a> to try it!
 
-Please use the issues tracker only to report issues. If you have any kind of question you can ask them on [the blog post on my website](http://www.marcogomiero.com/blog/update-yt-parser-2/)
+Please use the issues tracker only to report issues. If you have any kind of question you can ask them on [the blog post](https://medium.com/@marcogomiero/new-big-update-for-youtube-parser-video-stats-and-much-more-79dde73f21e6)
 
 ## Changelog
 - 21 May 2019 - Rewrote library with Kotlin - Version 3.0.0
