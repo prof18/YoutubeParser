@@ -27,7 +27,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
     implementation project(":youtubeparser")
-//    implementation 'com.prof.rssparser:rssparser:${versions.libVersionName}'
+//    implementation "com.prof.youtubeparser:youtubeparser:${versions.libVersionName}"
 
     // UI
     implementation "androidx.appcompat:appcompat:${versions.appCompat}"
