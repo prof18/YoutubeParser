@@ -12,6 +12,8 @@ android {
 
         buildConfigField "String", "KEY", "\""+getKey()+"\""
 
+        vectorDrawables.useSupportLibrary = true
+
     }
     buildTypes {
         release {
