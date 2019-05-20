@@ -88,39 +88,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
             @Override
             public void onClick(View view) {
                 mActivity.getVideoStats(videoId);
-                // TODO: move to viewmodel
-
-               /* VideoStats videoStats = new VideoStats();
-                videoStats.onFinish(new VideoStats.OnTaskCompleted() {
-                    @Override
-                    public void onTaskCompleted(@NonNull Statistics stats) {
-                        String body = "Views: " + stats.getViewCount() + "\n" +
-                                "Like: " + stats.getLikeCount() + "\n" +
-                                "Dislike: " + stats.getDislikeCount() + "\n" +
-                                "Number of comment: " + stats.getCommentCount() + "\n" +
-                                "Number of favourite: " + stats.getFavoriteCount();
-
-                        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mContext);
-                        dialogBuilder.setTitle("Stats for: \"" + videoTitle + "\"");
-                        dialogBuilder.setMessage(body);
-                        dialogBuilder.setCancelable(false);
-                        dialogBuilder.setNegativeButton(android.R.string.ok,
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                    }
-                                });
-                        dialogBuilder.show();
-                    }
-
-                    @Override
-                    public void onError(@NonNull Exception e) {
-                        e.printStackTrace();
-                        Toast.makeText(mContext, "Unable to get statistic for this video. Please try again", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                String requestUrl = videoStats.generateStatsRequest(videoId, BuildConfig.KEY);
-                videoStats.execute(requestUrl);*/
             }
         });
 

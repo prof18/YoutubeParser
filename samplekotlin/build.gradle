@@ -12,7 +12,7 @@ android {
         versionCode 30000
         versionName "3.0.0"
 
-        buildConfigField "String", "KEY", "\""+getKey()+"\""
+        buildConfigField "String", "KEY", "\"" + getKey() + "\""
 
     }
     buildTypes {
@@ -48,4 +48,3 @@ dependencies {
     implementation "com.squareup.picasso:picasso:${versions.picasso}"
     implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"
 }
-
