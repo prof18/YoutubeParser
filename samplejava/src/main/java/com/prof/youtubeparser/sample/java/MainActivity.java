@@ -20,7 +20,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         progressBar = findViewById(R.id.progressBar);
         mFab = findViewById(R.id.fab);
@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Video> videos) {
                 if (videos != null) {
-                    ;
                     mAdapter.setVideos(videos);
                     mAdapter.notifyDataSetChanged();
                     progressBar.setVisibility(View.GONE);
@@ -122,7 +121,10 @@ public class MainActivity extends AppCompatActivity {
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
 
                 LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-                int lastVisible = layoutManager.findLastVisibleItemPosition();
+                int lastVisible = 0;
+                if (layoutManager != null) {
+                    lastVisible = layoutManager.findLastVisibleItemPosition();
+                }
 
                 if (lastVisible == mAdapter.getItemCount() - 1) {
                     mFab.show();

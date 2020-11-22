@@ -21,7 +21,7 @@ import com.prof.youtubeparser.core.CoreJsonParser
 import com.prof.youtubeparser.models.stats.Statistics
 import java.util.concurrent.Callable
 
-class JsonStatsParser(private val json: String) : Callable<Statistics> {
+internal class JsonStatsParser(private val json: String) : Callable<Statistics> {
 
     @Throws(Exception::class)
     override fun call(): Statistics {

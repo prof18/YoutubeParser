@@ -20,6 +20,7 @@ package com.prof.youtubeparser.sample.kotlin
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.prof.youtubeparser.Parser
 import com.prof.youtubeparser.VideoStats
 import com.prof.youtubeparser.models.stats.Statistics
@@ -30,9 +31,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
-
-    private val viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     private val _videoList = MutableLiveData<MutableList<Video>>()
     val videoList: LiveData<MutableList<Video>>
@@ -50,17 +48,12 @@ class MainViewModel : ViewModel() {
     private val channelID = "UCVHFbqXqoYvEWM1Ddxl0QDg"
     private val parser = Parser()
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
-
     fun onSnackbarShowed() {
         _snackbar.value = null
     }
 
     fun fetchVideos() {
-        coroutineScope.launch(Dispatchers.Main) {
+        viewModelScope.launch(Dispatchers.Main) {
             val requestUrl = parser.generateRequest(
                     channelID = channelID,
                     maxResult = 20,
@@ -89,7 +82,7 @@ class MainViewModel : ViewModel() {
                     nextToken = pageToken
             )
 
-            coroutineScope.launch(Dispatchers.Main) {
+            viewModelScope.launch(Dispatchers.Main) {
                 val result = parser.getVideos(requestUrl)
                 nextToken = result.nextToken
                 val oldList = _videoList.value ?: mutableListOf()
@@ -105,7 +98,7 @@ class MainViewModel : ViewModel() {
                 videoID = videoId,
                 key = BuildConfig.KEY
         )
-        coroutineScope.launch(Dispatchers.Main) {
+        viewModelScope.launch(Dispatchers.Main) {
             try {
                 _stats.postValue(videoStats.getStats(requestUrl))
             } catch (e: Exception) {

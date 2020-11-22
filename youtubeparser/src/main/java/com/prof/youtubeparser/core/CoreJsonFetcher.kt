@@ -21,7 +21,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.lang.Exception
 
-object CoreJsonFetcher {
+internal object CoreJsonFetcher {
 
     @Throws(Exception::class)
     fun fetchJson(url: String): String {

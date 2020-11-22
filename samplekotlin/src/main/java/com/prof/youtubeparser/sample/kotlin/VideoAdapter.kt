@@ -21,7 +21,6 @@ class VideoAdapter(var items: MutableList<Video>, val activity: MainActivity) : 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: Video) {
             val pubDateString = item.date
-            val videoTitle = item.title
 
             //retrieve video link
             val videoId = item.videoId
