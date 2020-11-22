@@ -48,12 +48,6 @@ buildscript {
 }
 
 def getKey() {
-    val local = java.util.Properties()
-    val localProperties: File = rootProject.file("local.properties")
-    if (localProperties.exists()) {
-        localProperties.inputStream().use { local.load(it) }
-    }
-
     Properties properties = new Properties()
     File propertiesFile = project.rootProject.file('local.properties')
     if (propertiesFile.exists()) {
