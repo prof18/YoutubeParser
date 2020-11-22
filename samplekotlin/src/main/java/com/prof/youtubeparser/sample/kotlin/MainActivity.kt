@@ -26,10 +26,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -39,7 +39,7 @@ import kotlinx.android.synthetic.main.content_main.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var adapter: VideoAdapter
-    private lateinit var viewModel: MainViewModel
+    private val viewModel: MainViewModel by viewModels()
     private val isNetworkAvailable: Boolean
         get() {
             val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -52,10 +52,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
 
-        viewModel.videoList.observe(this, Observer { videos ->
+        viewModel.videoList.observe(this, { videos ->
             videos?.let {
                 adapter.items = videos
                 adapter.notifyDataSetChanged()
@@ -65,7 +64,7 @@ class MainActivity : AppCompatActivity() {
 
         })
 
-        viewModel.stats.observe(this, Observer { stats ->
+        viewModel.stats.observe(this, { stats ->
             stats?.let {
                 val body = "Views: " + stats.viewCount + "\n" +
                         "Like: " + stats.likeCount + "\n" +
@@ -77,14 +76,14 @@ class MainActivity : AppCompatActivity() {
                 dialogBuilder.setTitle("Stats")
                 dialogBuilder.setMessage(body)
                 dialogBuilder.setCancelable(false)
-                dialogBuilder.setNegativeButton(android.R.string.ok) { dialog, which ->
+                dialogBuilder.setNegativeButton(android.R.string.ok) { dialog, _ ->
                     dialog.dismiss()
                 }
                 dialogBuilder.show()
             }
         })
 
-        viewModel.snackbar.observe(this, Observer { value ->
+        viewModel.snackbar.observe(this, { value ->
             value?.let {
                 Snackbar.make(root_layout, value, Snackbar.LENGTH_LONG).show()
                 viewModel.onSnackbarShowed()
@@ -132,7 +131,7 @@ class MainActivity : AppCompatActivity() {
                     .setTitle(R.string.alert_title)
                     .setCancelable(false)
                     .setPositiveButton(R.string.alert_positive
-                    ) { dialog, id -> finish() }
+                    ) { _, _ -> finish() }
 
             val alert = builder.create()
             alert.show()
@@ -142,10 +141,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    public fun getVideoStats(videoId: String) {
-        if (::viewModel.isInitialized) {
-            viewModel.fetchStatistics(videoId)
-        }
+    fun getVideoStats(videoId: String) {
+        viewModel.fetchStatistics(videoId)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -159,7 +156,7 @@ class MainActivity : AppCompatActivity() {
         val id = item.itemId
 
         if (id == R.id.action_settings) {
-            val alertDialog = androidx.appcompat.app.AlertDialog.Builder(this@MainActivity).create()
+            val alertDialog = AlertDialog.Builder(this@MainActivity).create()
             alertDialog.setTitle(R.string.app_name)
             alertDialog.setMessage(Html.fromHtml(Html.fromHtml(this@MainActivity.getString(R.string.info_text) +
                     " <a href='http://github.com/prof18/YoutubeParser'>GitHub.</a>" +

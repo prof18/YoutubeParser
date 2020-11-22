@@ -23,7 +23,7 @@ import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-object CoroutineEngine {
+internal object CoroutineEngine {
 
     @Throws(Exception::class)
     suspend fun fetchJson(url: String) =

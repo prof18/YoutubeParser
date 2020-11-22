@@ -3,14 +3,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
 
     defaultConfig {
         applicationId "com.prof.youtubeparser.sample.kotlin"
         minSdkVersion 14
-        targetSdkVersion 28
-        versionCode 30000
-        versionName "3.0.0"
+        targetSdkVersion 30
+        versionCode 30001
+        versionName "3.0.1"
 
         buildConfigField "String", "KEY", "\"" + getKey() + "\""
 
@@ -22,6 +22,15 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        targetCompatibility = 1.8
+        sourceCompatibility = 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }
 
@@ -35,17 +44,20 @@ dependencies {
     implementation "androidx.appcompat:appcompat:${versions.appCompat}"
     implementation "com.google.android.material:material:${versions.material}"
     implementation "androidx.recyclerview:recyclerview:${versions.androidX}"
-    implementation "androidx.cardview:cardview:${versions.androidX}"
+    implementation "androidx.cardview:cardview:${versions.cardView}"
     implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
-
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:${versions.swipe}"
 
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}"
 
     // Architecture components
-    implementation "androidx.lifecycle:lifecycle-runtime:${versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycle}"
     implementation "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}"
+    implementation "androidx.activity:activity-ktx:${versions.activityAndroidx}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}"
+
 
     implementation "com.squareup.picasso:picasso:${versions.picasso}"
     implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"

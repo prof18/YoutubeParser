@@ -21,7 +21,7 @@ import com.prof.youtubeparser.core.CoreJsonParser
 import com.prof.youtubeparser.core.ParsingResult
 import java.util.concurrent.Callable
 
-class JsonVideoParser(private val json: String): Callable<ParsingResult> {
+internal class JsonVideoParser(private val json: String): Callable<ParsingResult> {
 
     @Throws(Exception::class)
     override fun call(): ParsingResult {
