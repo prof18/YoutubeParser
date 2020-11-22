@@ -48,9 +48,20 @@ buildscript {
 }
 
 def getKey() {
+    val local = java.util.Properties()
+    val localProperties: File = rootProject.file("local.properties")
+    if (localProperties.exists()) {
+        localProperties.inputStream().use { local.load(it) }
+    }
+
     Properties properties = new Properties()
-    properties.load(project.rootProject.file('local.properties').newDataInputStream())
-    return properties.getProperty("ytKey")
+    File propertiesFile = project.rootProject.file('local.properties')
+    if (propertiesFile.exists()) {
+        properties.load(propertiesFile.newDataInputStream())
+        return properties.getProperty("ytKey")
+    }
+    return "fakeKey"
+
 }
 
 allprojects {
