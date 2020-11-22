@@ -57,7 +57,7 @@ object CoreJsonParser {
             Locale.setDefault(Locale.getDefault())
             val tz = TimeZone.getDefault()
             val cal = Calendar.getInstance(tz)
-            val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+            val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
             sdf.calendar = cal
             cal.time = sdf.parse(sDate)
             val date = cal.time
