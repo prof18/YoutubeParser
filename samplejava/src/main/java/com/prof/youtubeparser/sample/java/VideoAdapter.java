@@ -27,7 +27,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.prof.youtubeparser.models.Video;
+import com.prof.youtubeparser.models.videos.Video;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

@@ -28,7 +28,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.prof.youtubeparser.models.Video;
+import com.prof.youtubeparser.models.videos.Video;
 
 import java.util.ArrayList;
 import java.util.List;

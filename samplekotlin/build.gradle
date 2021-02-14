@@ -36,15 +36,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation 'junit:junit:4.12'
-//    implementation project(":youtubeparser")
-    implementation "com.prof18.youtubeparser:youtubeparser:1.0"
+    implementation project(":youtubeparser")
+//    implementation "com.prof18.youtubeparser:youtubeparser:1.0"
 
     // UI
     implementation "androidx.appcompat:appcompat:${versions.appCompat}"
     implementation "com.google.android.material:material:${versions.material}"
-    implementation "androidx.recyclerview:recyclerview:${versions.androidX}"
-    implementation "androidx.cardview:cardview:${versions.cardView}"
+    implementation "androidx.recyclerview:recyclerview:${versions.recyclerView}"
+    implementation "androidx.cardview:cardview:${versions.androidx}"
     implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:${versions.swipe}"
 
@@ -54,7 +53,7 @@ dependencies {
 
     // Architecture components
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycle}"
-    implementation "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-extensions:${versions.lifecycleExtensions}"
     implementation "androidx.activity:activity-ktx:${versions.activityAndroidx}"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}"
 
