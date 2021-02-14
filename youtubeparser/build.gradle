@@ -1,6 +1,13 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
+ext {
+    PUBLISH_GROUP_ID = 'com.prof18.youtubeparser'
+    PUBLISH_VERSION = versions.libVersionName
+    PUBLISH_ARTIFACT_ID = 'youtubeparser'
+}
+
+apply from: "${rootProject.projectDir}/gradle/publish-mavencentral.gradle"
 
 android {
     compileSdkVersion versions.compileSdk
@@ -33,11 +40,4 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}"
 
     testImplementation "junit:junit:${versions.junit}"
-
-}
-
-
-apply from: 'publish.gradle'
-repositories {
-    mavenCentral()
 }

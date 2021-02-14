@@ -5,9 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.prof.youtubeparser.Parser;
-import com.prof.youtubeparser.VideoStats;
-import com.prof.youtubeparser.models.stats.Statistics;
-import com.prof.youtubeparser.models.videos.Video;
+import com.prof.youtubeparser.models.Video;
 
 import java.util.ArrayList;
 import java.util.List;

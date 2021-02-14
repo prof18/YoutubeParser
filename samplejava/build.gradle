@@ -5,7 +5,7 @@ android {
 
     defaultConfig {
         applicationId "com.prof.youtubeparser.sample.java"
-        minSdkVersion versions.minSdk
+        minSdkVersion 15
         targetSdkVersion versions.targetSdk
         versionCode 30001
         versionName "3.0.1"
@@ -26,8 +26,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
-    implementation project(":youtubeparser")
-//    implementation "com.prof.youtubeparser:youtubeparser:${versions.libVersionName}"
+//    implementation project(":youtubeparser")
+    implementation "com.prof18.youtubeparser:youtubeparser:1.0"
 
     // UI
     implementation "androidx.appcompat:appcompat:${versions.appCompat}"

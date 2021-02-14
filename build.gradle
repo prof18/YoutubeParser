@@ -37,13 +37,14 @@ buildscript {
             name 'Google'
         }
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:${versions.kotlin}"
         classpath "com.github.ben-manes:gradle-versions-plugin:0.36.0"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.4.20"
     }
 }
 
@@ -59,7 +60,9 @@ allprojects {
             url 'https://maven.google.com/'
             name 'Google'
         }
+        mavenCentral()
         jcenter()
+
     }
 }
 
