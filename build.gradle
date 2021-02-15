@@ -53,8 +53,13 @@ buildscript {
 
 def getKey() {
     Properties properties = new Properties()
-    properties.load(project.rootProject.file('local.properties').newDataInputStream())
-    return properties.getProperty("ytKey")
+    File propertiesFile = project.file('local.properties')
+    if (!propertiesFile.exists()) {
+        properties.load(propertiesFile.newDataInputStream())
+        return properties.getProperty("ytKey")
+    } else {
+        return ''
+    }
 }
 
 allprojects {
