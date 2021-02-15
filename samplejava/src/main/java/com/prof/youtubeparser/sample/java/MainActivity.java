@@ -28,7 +28,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.prof.youtubeparser.models.stats.Statistics;
 import com.prof.youtubeparser.models.videos.Video;
 
 import java.util.ArrayList;
@@ -90,30 +89,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        viewModel.getLiveStats().observe(this, new Observer<Statistics>() {
-            @Override
-            public void onChanged(Statistics stats) {
-                if (stats != null) {
-                    String body = "Views: " + stats.getViewCount() + "\n" +
-                            "Like: " + stats.getLikeCount() + "\n" +
-                            "Dislike: " + stats.getDislikeCount() + "\n" +
-                            "Number of comment: " + stats.getCommentCount() + "\n" +
-                            "Number of favourite: " + stats.getFavoriteCount();
-
-                    final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this);
-                    dialogBuilder.setTitle("Stats");
-                    dialogBuilder.setMessage(body);
-                    dialogBuilder.setCancelable(false);
-                    dialogBuilder.setNegativeButton(android.R.string.ok,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
-                    dialogBuilder.show();
-                }
-            }
-        });
+//        viewModel.getLiveStats().observe(this, new Observer<Statistics>() {
+//            @Override
+//            public void onChanged(Statistics stats) {
+//                if (stats != null) {
+//                    String body = "Views: " + stats.getViewCount() + "\n" +
+//                            "Like: " + stats.getLikeCount() + "\n" +
+//                            "Dislike: " + stats.getDislikeCount() + "\n" +
+//                            "Number of comment: " + stats.getCommentCount() + "\n" +
+//                            "Number of favourite: " + stats.getFavoriteCount();
+//
+//                    final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this);
+//                    dialogBuilder.setTitle("Stats");
+//                    dialogBuilder.setMessage(body);
+//                    dialogBuilder.setCancelable(false);
+//                    dialogBuilder.setNegativeButton(android.R.string.ok,
+//                            new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    dialog.dismiss();
+//                                }
+//                            });
+//                    dialogBuilder.show();
+//                }
+//            }
+//        });
 
         //show the fab on the bottom of recycler view
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
