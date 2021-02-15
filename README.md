@@ -19,7 +19,7 @@ allprojects {
 
 ## How to
 ### Import:
-The library is uploaded in jCenter, so you can easily add the dependency:
+The library is uploaded on MavenCentral, so you can easily add the dependency:
 ```Gradle
 dependencies {
   compile 'com.prof18.youtubeparser:youtubeparser:<latest-version>'
