@@ -1,16 +1,28 @@
 # YoutubeParser
-[![Download](https://api.bintray.com/packages/prof18/maven/YoutubeParser/images/download.svg)](https://bintray.com/prof18/maven/YoutubeParser/_latestVersion)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.prof18.youtubeparser/youtubeparser/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/com.prof18.youtubeparser/youtubeparser)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)
 
 This is an Android library to get information of videos from Youtube channels. You can retrieve title, link and thumbnail of a video from a specific channel. You can also get the statistics of a video like view, like, dislike, favorite and comment count. Now it is also possible to load more videos by making a new request.
+
+## ⚠️ Important Notice
+
+The library artifacts have been moved to MavenCentral. The group id is changed from `com.prof.youtubeparser` to `com.prof18.youtubeparser`.
+Be sure to add the gradle dependency to your root `build.gradle` file.
+```
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+```
 
 ## How to
 ### Import:
 The library is uploaded in jCenter, so you can easily add the dependency:
 ```Gradle
 dependencies {
-  compile 'com.prof.youtubeparser:youtubeparser:3.0.0'
+  compile 'com.prof18.youtubeparser:youtubeparser:<latest-version>'
 }
 ```
 ### Usage:
