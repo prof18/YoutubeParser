@@ -243,7 +243,6 @@ I wrote a simple app that shows videos from Android Developer Youtube Channel.
 <img src="https://raw.githubusercontent.com/prof18/YoutubeParser/master/Screen.png" width="30%" height="30%">
 
 The sample is written both in Kotlin and Java. You can browse the Kotlin code [here](https://github.com/prof18/YoutubeParser/tree/master/samplekotlin) and the Java code [here](https://github.com/prof18/YoutubeParser/tree/master/samplejava)
-You can also download the <a href="https://github.com/prof18/YoutubeParser/blob/master/YoutubeParser.apk"> apk file</a> to try it!
 
 Please use the issues tracker only to report issues. If you have any kind of question you can ask them on [the blog post](https://medium.com/@marcogomiero/new-big-update-for-youtube-parser-video-stats-and-much-more-79dde73f21e6)
 
