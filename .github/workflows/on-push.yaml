@@ -1,6 +1,7 @@
-name: PR Checks
+name: Publish
+
 on:
-  pull_request:
+  push:
     branches:
       - '*'
 
