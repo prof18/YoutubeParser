@@ -25,16 +25,19 @@ import android.text.method.LinkMovementMethod
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.widget.ContentLoadingProgressBar
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -50,18 +53,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        val progressBar = findViewById<ContentLoadingProgressBar>(R.id.progressBar)
+        val swipeLayout = findViewById<SwipeRefreshLayout>(R.id.swipe_layout)
+        val rootLayout = findViewById<RelativeLayout>(R.id.root_layout)
+        val list = findViewById<RecyclerView>(R.id.list)
+        val fab = findViewById<FloatingActionButton>(R.id.fab)
+
         setSupportActionBar(toolbar)
-
-
 
         viewModel.videoList.observe(this, { videos ->
             videos?.let {
                 adapter.items = videos
                 adapter.notifyDataSetChanged()
                 progressBar.hide()
-                swipe_layout.isRefreshing = false
+                swipeLayout.isRefreshing = false
             }
-
         })
 
         viewModel.stats.observe(this, { stats ->
@@ -85,7 +93,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.snackbar.observe(this, { value ->
             value?.let {
-                Snackbar.make(root_layout, value, Snackbar.LENGTH_LONG).show()
+                Snackbar.make(rootLayout, value, Snackbar.LENGTH_LONG).show()
                 viewModel.onSnackbarShowed()
             }
         })
@@ -94,12 +102,12 @@ class MainActivity : AppCompatActivity() {
         list.layoutManager = LinearLayoutManager(this)
         list.adapter = adapter
 
-        swipe_layout.setColorSchemeResources(R.color.colorPrimary, R.color.colorPrimaryDark)
-        swipe_layout.canChildScrollUp()
-        swipe_layout.setOnRefreshListener {
+        swipeLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorPrimaryDark)
+        swipeLayout.canChildScrollUp()
+        swipeLayout.setOnRefreshListener {
             adapter.items.clear()
             adapter.notifyDataSetChanged()
-            swipe_layout.isRefreshing = true
+            swipeLayout.isRefreshing = true
             viewModel.fetchVideos()
         }
 
@@ -171,5 +179,4 @@ class MainActivity : AppCompatActivity() {
 
         return super.onOptionsItemSelected(item)
     }
-
 }
