@@ -20,62 +20,29 @@ package com.prof.youtubeparser.core
 import com.google.gson.GsonBuilder
 import com.prof.youtubeparser.models.stats.Statistics
 import com.prof.youtubeparser.models.videos.Video
+import com.prof.youtubeparser.models.videos.internal.Item
 import com.prof.youtubeparser.models.videos.internal.Main
-import java.text.SimpleDateFormat
-import java.util.*
 
 internal object CoreJsonParser {
 
     fun parseVideo(json: String): ParsingResult {
-        val videos = mutableListOf<Video>()
-
         val gson = GsonBuilder().create()
         val data = gson.fromJson(json, Main::class.java)
 
         //Begin parsing Json data
-        val itemList = data.items
         val nextToken = data.nextPageToken
-
-        for (i in itemList.indices) {
-
-            val item = itemList[i]
-            val snippet = item.snippet
-
-            val id = item.id
-
-            val image = snippet!!.thumbnails
-
-            val high = image?.high
-
-            val title = snippet.title
-            val videoId = id?.videoId
-            val imageLink = high?.url
-            val sDate = snippet.publishedAt
-
-            var pubDateString = "N/A"
-
-            Locale.setDefault(Locale.getDefault())
-            val tz = TimeZone.getDefault()
-            val cal = Calendar.getInstance(tz)
-            val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
-            sdf.calendar = cal
-            if (sDate != null) {
-                val dateObject = sdf.parse(sDate)
-                if (dateObject != null) {
-                    cal.time = dateObject
-                    val date = cal.time
-
-                    val sdf2 = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
-                    pubDateString = sdf2.format(date)
-                }
-            }
-
-            val tempVideo = Video(title, videoId, imageLink, pubDateString)
-            videos.add(tempVideo)
+        val videos = data.items.map { item ->
+            Video(
+                title = item.snippet?.title,
+                videoId = item.id?.videoId,
+                coverLink = item.getHighQualityThumbnailUrl(),
+                date = item.snippet?.publishedAt
+            )
         }
-
         return ParsingResult(videos, nextToken)
     }
+
+    private fun Item.getHighQualityThumbnailUrl(): String? = this.snippet?.thumbnails?.high?.url
 
     fun parseStats(json: String): Statistics {
         val gson = GsonBuilder().create()

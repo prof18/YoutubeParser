@@ -29,7 +29,6 @@ class CoreJsonParserVideoListTest {
 
     @Test
     fun title_isCorrect() {
-//        assertEquals("Paging: Live Q&A - MAD Skills", video.title)
         assertEquals("Paging: Live Q&amp;A - MAD Skills", video.title)
     }
 
@@ -45,7 +44,6 @@ class CoreJsonParserVideoListTest {
 
     @Test
     fun date_isCorrect() {
-//        assertEquals("2021-11-11T18:56:09Z", video.date)
-        assertEquals("11 November 2021", video.date)
+        assertEquals("2021-11-11T18:56:09Z", video.date)
     }
 }
