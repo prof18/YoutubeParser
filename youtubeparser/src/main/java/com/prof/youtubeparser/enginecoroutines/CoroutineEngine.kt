@@ -25,22 +25,18 @@ import kotlinx.coroutines.withContext
 
 internal object CoroutineEngine {
 
-    @Throws(Exception::class)
     suspend fun fetchJson(url: String) =
-            withContext(Dispatchers.IO) {
-                return@withContext CoreJsonFetcher.fetchJson(url)
-            }
+        withContext(Dispatchers.IO) {
+            return@withContext CoreJsonFetcher.fetchJson(url)
+        }
 
-    @Throws(Exception::class)
     suspend fun parseVideo(json: Deferred<String>) =
-            withContext(Dispatchers.IO) {
-                return@withContext CoreJsonParser.parseVideo(json.await())
-            }
+        withContext(Dispatchers.IO) {
+            return@withContext CoreJsonParser.parseVideo(json.await())
+        }
 
-    @Throws(Exception::class)
     suspend fun parseStats(json: Deferred<String>) =
-            withContext(Dispatchers.IO) {
-                return@withContext CoreJsonParser.parseStats(json.await())
-            }
-
+        withContext(Dispatchers.IO) {
+            return@withContext CoreJsonParser.parseStats(json.await())
+        }
 }

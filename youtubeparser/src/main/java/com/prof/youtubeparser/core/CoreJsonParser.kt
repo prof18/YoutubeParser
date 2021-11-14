@@ -19,14 +19,13 @@ package com.prof.youtubeparser.core
 
 import com.google.gson.GsonBuilder
 import com.prof.youtubeparser.models.stats.Statistics
-import com.prof.youtubeparser.models.videos.internal.Main
 import com.prof.youtubeparser.models.videos.Video
+import com.prof.youtubeparser.models.videos.internal.Main
 import java.text.SimpleDateFormat
 import java.util.*
 
 internal object CoreJsonParser {
 
-    @Throws(Exception::class)
     fun parseVideo(json: String): ParsingResult {
         val videos = mutableListOf<Video>()
 
@@ -78,15 +77,13 @@ internal object CoreJsonParser {
         return ParsingResult(videos, nextToken)
     }
 
-    @Throws(Exception::class)
     fun parseStats(json: String): Statistics {
         val gson = GsonBuilder().create()
-        val data = gson.fromJson(json, com.prof.youtubeparser.models.stats.internal.Main::class.java)
+        val data =
+            gson.fromJson(json, com.prof.youtubeparser.models.stats.internal.Main::class.java)
 
         val itemList = data.items
 
         return itemList[0].statistics
     }
-
-
 }

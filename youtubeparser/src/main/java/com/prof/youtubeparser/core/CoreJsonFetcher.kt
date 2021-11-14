@@ -23,7 +23,6 @@ import java.lang.Exception
 
 internal object CoreJsonFetcher {
 
-    @Throws(Exception::class)
     fun fetchJson(url: String): String {
         val client = OkHttpClient()
         val request = Request.Builder()

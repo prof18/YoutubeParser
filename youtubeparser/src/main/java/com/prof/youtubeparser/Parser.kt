@@ -111,7 +111,6 @@ class Parser {
         }
     }
 
-    @Throws(Exception::class)
     suspend fun getVideos(url: String) =
             withContext(Dispatchers.IO) {
                 val json = async { CoroutineEngine.fetchJson(url) }

@@ -61,7 +61,6 @@ class VideoStats {
         this.onComplete = onComplete
     }
 
-    @Throws(Exception::class)
     suspend fun getStats(url: String) =
             withContext(Dispatchers.IO) {
                 val json = async { CoroutineEngine.fetchJson(url) }

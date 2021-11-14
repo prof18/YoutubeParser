@@ -23,7 +23,6 @@ import java.util.concurrent.Callable
 
 internal class JsonStatsParser(private val json: String) : Callable<Statistics> {
 
-    @Throws(Exception::class)
     override fun call(): Statistics {
         return CoreJsonParser.parseStats(json)
     }
