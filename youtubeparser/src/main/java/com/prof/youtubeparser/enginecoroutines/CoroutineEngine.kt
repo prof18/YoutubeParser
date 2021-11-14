@@ -19,7 +19,6 @@ package com.prof.youtubeparser.enginecoroutines
 
 import com.prof.youtubeparser.core.CoreJsonFetcher
 import com.prof.youtubeparser.core.CoreJsonParser
-import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -30,13 +29,11 @@ internal object CoroutineEngine {
             return@withContext CoreJsonFetcher.fetchJson(url)
         }
 
-    suspend fun parseVideo(json: Deferred<String>) =
-        withContext(Dispatchers.IO) {
-            return@withContext CoreJsonParser.parseVideo(json.await())
-        }
+    suspend fun parseVideo(json: String) = withContext(Dispatchers.IO) {
+        return@withContext CoreJsonParser.parseVideo(json)
+    }
 
-    suspend fun parseStats(json: Deferred<String>) =
-        withContext(Dispatchers.IO) {
-            return@withContext CoreJsonParser.parseStats(json.await())
-        }
+    suspend fun parseStats(json: String) = withContext(Dispatchers.IO) {
+        return@withContext CoreJsonParser.parseStats(json)
+    }
 }

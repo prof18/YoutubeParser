@@ -22,10 +22,8 @@ import com.prof.youtubeparser.engine.JsonVideoParser
 import com.prof.youtubeparser.enginecoroutines.CoroutineEngine
 import com.prof.youtubeparser.models.videos.Video
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 import java.util.concurrent.Executors
-import kotlin.Exception
 
 class Parser {
 
@@ -41,8 +39,11 @@ class Parser {
      * @return The url required to get data
      */
     @Deprecated(
-            message = "This method is deprecated. Please use the new version that allows to choose the type of order of the videos: {@link #generateRequest(String, int, int, String)}",
-            replaceWith = ReplaceWith("generateRequest(channelID, maxResult, ORDER_DATE ,key)", "com.prof.youtubeparser.Parser.Companion.ORDER_DATE")
+        message = "This method is deprecated. Please use the new version that allows to choose the type of order of the videos: {@link #generateRequest(String, int, int, String)}",
+        replaceWith = ReplaceWith(
+            "generateRequest(channelID, maxResult, ORDER_DATE ,key)",
+            "com.prof.youtubeparser.Parser.Companion.ORDER_DATE"
+        )
     )
     fun generateRequest(channelID: String, maxResult: Int, key: String): String {
         return "$BASE_ADDRESS$channelID&maxResults=$maxResult&order=date&key=$key"
@@ -60,11 +61,11 @@ class Parser {
      */
     fun generateRequest(channelID: String, maxResult: Int, orderType: Int, key: String): String {
         val order =
-                when (orderType) {
-                    ORDER_DATE -> "date"
-                    ORDER_VIEW_COUNT -> "viewcount"
-                    else -> ""
-                }
+            when (orderType) {
+                ORDER_DATE -> "date"
+                ORDER_VIEW_COUNT -> "viewcount"
+                else -> ""
+            }
         return "$BASE_ADDRESS$channelID&maxResults=$maxResult&order=$order&key=$key"
     }
 
@@ -80,14 +81,20 @@ class Parser {
      * @param nextToken The token necessary to load more data
      * @return The url required to get more data
      */
-    fun generateMoreDataRequest(channelID: String, maxResult: Int, orderType: Int, key: String, nextToken: String): String {
+    fun generateMoreDataRequest(
+        channelID: String,
+        maxResult: Int,
+        orderType: Int,
+        key: String,
+        nextToken: String
+    ): String {
         val urlString = "https://www.googleapis.com/youtube/v3/search?pageToken="
         val order =
-                when (orderType) {
-                    ORDER_DATE -> "date"
-                    ORDER_VIEW_COUNT -> "viewcount"
-                    else -> ""
-                }
+            when (orderType) {
+                ORDER_DATE -> "date"
+                ORDER_VIEW_COUNT -> "viewcount"
+                else -> ""
+            }
         return "$urlString$nextToken&part=snippet&channelId=$channelID&maxResults=$maxResult&order=$order&key=$key"
     }
 
@@ -111,11 +118,10 @@ class Parser {
         }
     }
 
-    suspend fun getVideos(url: String) =
-            withContext(Dispatchers.IO) {
-                val json = async { CoroutineEngine.fetchJson(url) }
-                return@withContext CoroutineEngine.parseVideo(json)
-            }
+    suspend fun getVideos(url: String) = withContext(Dispatchers.IO) {
+        val json = CoroutineEngine.fetchJson(url)
+        return@withContext CoroutineEngine.parseVideo(json)
+    }
 
     companion object {
         const val BASE_ADDRESS = "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId="

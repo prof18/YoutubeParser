@@ -22,7 +22,6 @@ import com.prof.youtubeparser.engine.JsonStatsParser
 import com.prof.youtubeparser.enginecoroutines.CoroutineEngine
 import com.prof.youtubeparser.models.stats.Statistics
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 import java.util.concurrent.Executors
 
@@ -61,11 +60,10 @@ class VideoStats {
         this.onComplete = onComplete
     }
 
-    suspend fun getStats(url: String) =
-            withContext(Dispatchers.IO) {
-                val json = async { CoroutineEngine.fetchJson(url) }
-                return@withContext CoroutineEngine.parseStats(json)
-            }
+    suspend fun getStats(url: String) = withContext(Dispatchers.IO) {
+        val json = CoroutineEngine.fetchJson(url)
+        return@withContext CoroutineEngine.parseStats(json)
+    }
 
     companion object {
         const val BASE_ADDRESS = "https://www.googleapis.com/youtube/v3/videos?key="
