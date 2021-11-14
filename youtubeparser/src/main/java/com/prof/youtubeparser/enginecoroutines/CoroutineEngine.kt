@@ -24,10 +24,9 @@ import kotlinx.coroutines.withContext
 
 internal object CoroutineEngine {
 
-    suspend fun fetchJson(url: String) =
-        withContext(Dispatchers.IO) {
-            return@withContext CoreJsonFetcher.fetchJson(url)
-        }
+    suspend fun fetchJson(url: String) = withContext(Dispatchers.IO) {
+        return@withContext CoreJsonFetcher.fetchJson(url)
+    }
 
     suspend fun parseVideo(json: String) = withContext(Dispatchers.IO) {
         return@withContext CoreJsonParser.parseVideo(json)
