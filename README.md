@@ -247,6 +247,8 @@ The sample is written both in Kotlin and Java. You can browse the Kotlin code [h
 Please use the issues tracker only to report issues. If you have any kind of question you can ask them on [the blog post](https://medium.com/@marcogomiero/new-big-update-for-youtube-parser-video-stats-and-much-more-79dde73f21e6)
 
 ## Changelog
+From version 1.4.4 and above, the changelog is available in the [release section.](https://github.com/prof18/YoutubeParser/releases)
+
 - 21 May 2019 - Rewrote library with Kotlin - Version 3.0.0
 - 14 December 2017 - Improved Error Management - Version 2.2
 - 12 August 2017 - Fixed Library Manifest - Version 2.1
@@ -270,3 +272,13 @@ Please use the issues tracker only to report issues. If you have any kind of que
    See the License for the specific language governing permissions and
    limitations under the License.
 ```
+
+## Apps using RSS Parser
+If you are using Youtube Parser in your app and would like to be listed here, please open a pull request!
+
+<details>
+  <summary>List of Apps using Youtube Parser</summary>
+
+* [Your App Name](www.yourapplink.com)
+
+</details>
