@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
         swipeLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorPrimaryDark)
         swipeLayout.canChildScrollUp()
         swipeLayout.setOnRefreshListener {
-            adapter.items.clear()
+            adapter.items = emptyList()
             adapter.notifyDataSetChanged()
             swipeLayout.isRefreshing = true
             viewModel.fetchVideos()

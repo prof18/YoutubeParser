@@ -32,8 +32,8 @@ import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
 
-    private val _videoList = MutableLiveData<MutableList<Video>>()
-    val videoList: LiveData<MutableList<Video>>
+    private val _videoList = MutableLiveData<List<Video>>()
+    val videoList: LiveData<List<Video>>
         get() = _videoList
 
     private val _snackbar = MutableLiveData<String>()
@@ -82,10 +82,10 @@ class MainViewModel : ViewModel() {
                     nextToken = pageToken
             )
 
-            viewModelScope.launch(Dispatchers.Main) {
+            viewModelScope.launch {
                 val result = parser.getVideos(requestUrl)
                 nextToken = result.nextToken
-                val oldList = _videoList.value ?: mutableListOf()
+                val oldList = _videoList.value?.toMutableList() ?: mutableListOf()
                 oldList.addAll(result.videos)
                 _videoList.postValue(oldList)
             }
@@ -98,7 +98,7 @@ class MainViewModel : ViewModel() {
                 videoID = videoId,
                 key = BuildConfig.KEY
         )
-        viewModelScope.launch(Dispatchers.Main) {
+        viewModelScope.launch {
             try {
                 _stats.postValue(videoStats.getStats(requestUrl))
             } catch (e: Exception) {
@@ -106,7 +106,5 @@ class MainViewModel : ViewModel() {
                 _snackbar.value = "An error has occurred. Please retry"
             }
         }
-
     }
-
 }

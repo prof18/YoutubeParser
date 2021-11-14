@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     defaultConfig {
         applicationId "com.prof.youtubeparser.sample.kotlin"
         minSdkVersion 15
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 30001
         versionName "3.0.1"
 
@@ -58,5 +58,4 @@ dependencies {
 
 
     implementation "com.squareup.picasso:picasso:${versions.picasso}"
-    implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"
 }
