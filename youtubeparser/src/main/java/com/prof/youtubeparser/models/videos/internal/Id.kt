@@ -15,10 +15,9 @@
 *   
 */
 
-package com.prof.youtubeparser.models.videos
+package com.prof.youtubeparser.models.videos.internal
 
-data class Medium(
-        var url: String? = null,
-        var width: Int? = null,
-        var height: Int? = null
+internal data class Id(
+    val kind: String? = null,
+    val videoId: String? = null
 )

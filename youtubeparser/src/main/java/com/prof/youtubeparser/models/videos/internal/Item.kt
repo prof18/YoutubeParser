@@ -15,10 +15,11 @@
 *   
 */
 
-package com.prof.youtubeparser.models.videos
+package com.prof.youtubeparser.models.videos.internal
 
-data class High(
-        var url: String? = null,
-        var width: Int? = null,
-        var height: Int? = null
+internal data class Item(
+    val kind: String? = null,
+    val etag: String? = null,
+    val id: Id? = null,
+    val snippet: Snippet? = null
 )

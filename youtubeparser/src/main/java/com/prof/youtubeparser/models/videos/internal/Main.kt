@@ -15,11 +15,13 @@
 *   
 */
 
-package com.prof.youtubeparser.models.videos
+package com.prof.youtubeparser.models.videos.internal
 
-data class Item(
-        var kind: String? = null,
-        var etag: String? = null,
-        var id: Id? = null,
-        var snippet: Snippet? = null
+internal data class Main(
+    val kind: String? = null,
+    val etag: String? = null,
+    val nextPageToken: String? = null,
+    val regionCode: String? = null,
+    val pageInfo: PageInfo? = null,
+    val items: List<Item> = listOf()
 )

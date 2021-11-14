@@ -12,14 +12,13 @@
 *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 *   See the License for the specific language governing permissions and
 *   limitations under the License.
-*
+*   
 */
 
-package com.prof.youtubeparser.models.stats
+package com.prof.youtubeparser.models.videos.internal
 
-data class Main(
-        var kind: String,
-        var etag: String,
-        var pageInfo: PageInfo,
-        var items: List<Item>
+internal data class High(
+    val url: String? = null,
+    val width: Int? = null,
+    val height: Int? = null
 )

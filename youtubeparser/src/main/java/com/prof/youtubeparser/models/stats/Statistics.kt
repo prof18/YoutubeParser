@@ -18,9 +18,9 @@
 package com.prof.youtubeparser.models.stats
 
 data class Statistics(
-        var viewCount: Int,
-        var likeCount: Int,
-        var dislikeCount: Int,
-        var favoriteCount: Int,
-        var commentCount: Int
+    val viewCount: Int? = null,
+    val likeCount: Int? = null,
+    val dislikeCount: Int? = null,
+    val favoriteCount: Int? = null,
+    val commentCount: Int? = null
 )

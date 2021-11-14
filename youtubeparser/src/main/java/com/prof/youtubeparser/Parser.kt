@@ -125,7 +125,7 @@ class Parser {
     }
 
     interface OnTaskCompleted {
-        fun onTaskCompleted(list: MutableList<Video>, nextPageToken: String?)
+        fun onTaskCompleted(list: List<Video>, nextPageToken: String?)
         fun onError(e: Exception)
     }
 }

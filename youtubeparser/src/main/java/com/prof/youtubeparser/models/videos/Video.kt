@@ -18,8 +18,8 @@
 package com.prof.youtubeparser.models.videos
 
 data class Video(
-        var title: String? = null,
-        var videoId: String? = null,
-        var coverLink: String? = null,
-        var date: String? = null
+    val title: String? = null,
+    val videoId: String? = null,
+    val coverLink: String? = null,
+    val date: String? = null
 )

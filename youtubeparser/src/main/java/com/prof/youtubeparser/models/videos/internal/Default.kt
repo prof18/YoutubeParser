@@ -15,10 +15,10 @@
 *   
 */
 
-package com.prof.youtubeparser.models.videos
+package com.prof.youtubeparser.models.videos.internal
 
-data class Default(
-        var url: String? = null,
-        var width: Int? = null,
-        var height: Int? = null
+internal data class Default(
+    val url: String? = null,
+    val width: Int? = null,
+    val height: Int? = null
 )

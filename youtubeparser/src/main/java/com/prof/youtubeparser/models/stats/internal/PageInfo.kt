@@ -15,11 +15,9 @@
 *
 */
 
-package com.prof.youtubeparser.models.stats
+package com.prof.youtubeparser.models.stats.internal
 
-data class Item(
-        var kind: String,
-        var etag: String,
-        var id: String,
-        var statistics: Statistics
+internal data class PageInfo(
+    val totalResults: Int,
+    val resultsPerPage: Int
 )

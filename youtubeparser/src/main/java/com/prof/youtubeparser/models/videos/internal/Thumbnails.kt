@@ -15,9 +15,10 @@
 *   
 */
 
-package com.prof.youtubeparser.models.videos
+package com.prof.youtubeparser.models.videos.internal
 
-data class PageInfo(
-        var totalResults: Int? = null,
-        var resultsPerPage: Int? = null
+internal data class Thumbnails(
+    val default: Default? = null,
+    val medium: Medium? = null,
+    val high: High? = null
 )

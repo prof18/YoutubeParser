@@ -15,10 +15,10 @@
 *   
 */
 
-package com.prof.youtubeparser.models.videos
+package com.prof.youtubeparser.models.videos.internal
 
-data class Thumbnails(
-    var default: Default? = null,
-    var medium: Medium? = null,
-    var high: High? = null
+internal data class Medium(
+    val url: String? = null,
+    val width: Int? = null,
+    val height: Int? = null
 )

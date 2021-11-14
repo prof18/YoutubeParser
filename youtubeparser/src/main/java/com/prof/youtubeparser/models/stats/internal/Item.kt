@@ -12,16 +12,16 @@
 *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 *   See the License for the specific language governing permissions and
 *   limitations under the License.
-*   
+*
 */
 
-package com.prof.youtubeparser.models.videos
+package com.prof.youtubeparser.models.stats.internal
 
-data class Main(
-        var kind: String? = null,
-        var etag: String? = null,
-        var nextPageToken: String? = null,
-        var regionCode: String? = null,
-        var pageInfo: PageInfo? = null,
-        var items: List<Item> = mutableListOf()
+import com.prof.youtubeparser.models.stats.Statistics
+
+internal data class Item(
+    val kind: String,
+    val etag: String,
+    val id: String,
+    val statistics: Statistics
 )

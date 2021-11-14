@@ -15,14 +15,14 @@
 *   
 */
 
-package com.prof.youtubeparser.models.videos
+package com.prof.youtubeparser.models.videos.internal
 
-data class Snippet(
-        var publishedAt: String? = null,
-        var channelId: String? = null,
-        var title: String? = null,
-        var description: String? = null,
-        var thumbnails: Thumbnails? = null,
-        var channelTitle: String? = null,
-        var liveBroadcastContent: String? = null
+internal data class Snippet(
+    val publishedAt: String? = null,
+    val channelId: String? = null,
+    val title: String? = null,
+    val description: String? = null,
+    val thumbnails: Thumbnails? = null,
+    val channelTitle: String? = null,
+    val liveBroadcastContent: String? = null
 )

@@ -15,9 +15,9 @@
 *   
 */
 
-package com.prof.youtubeparser.models.videos
+package com.prof.youtubeparser.models.videos.internal
 
-data class Id(
-        var kind: String? = null,
-        var videoId: String? = null
+internal data class PageInfo(
+    val totalResults: Int? = null,
+    val resultsPerPage: Int? = null
 )
