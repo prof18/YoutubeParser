@@ -3,9 +3,6 @@ package com.prof.youtubeparser
 object FakeDataFactory {
 
     val listResponse = """
-        // 20211113193140
-        // https://www.googleapis.com/youtube/v3/search?&part=snippet&channelId=UCVHFbqXqoYvEWM1Ddxl0QDg&maxResults=2&order=date&key=AIzaSyBpgVCZfXf4KG20xtb-PB8J06zPkLDvD3w
-
         {
           "kind": "youtube#searchListResponse",
           "etag": "jQfvHzWTvDXgowxV9WgA22pJIoM",
@@ -89,9 +86,6 @@ object FakeDataFactory {
     """.trimIndent()
 
     val statsResponse = """
-        // 20211113183416
-        // https://www.googleapis.com/youtube/v3/videos?key=AIzaSyBpgVCZfXf4KG20xtb-PB8J06zPkLDvD3w&part=statistics&id=cR3e_dhy-sQ
-
         {
           "kind": "youtube#videoListResponse",
           "etag": "89tsWMmv_c7IWgg6vqs30MPZ-2c",
