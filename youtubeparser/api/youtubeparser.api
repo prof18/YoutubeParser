@@ -6,11 +6,11 @@ public final class com/prof/youtubeparser/BuildConfig {
 }
 
 public final class com/prof/youtubeparser/Parser {
-	public static final field BASE_ADDRESS Ljava/lang/String;
 	public static final field Companion Lcom/prof/youtubeparser/Parser$Companion;
 	public static final field ORDER_DATE I
 	public static final field ORDER_VIEW_COUNT I
 	public fun <init> ()V
+	public final fun cancel ()V
 	public final fun execute (Ljava/lang/String;)V
 	public final fun generateMoreDataRequest (Ljava/lang/String;IILjava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 	public final fun generateRequest (Ljava/lang/String;IILjava/lang/String;)Ljava/lang/String;
@@ -28,16 +28,12 @@ public abstract interface class com/prof/youtubeparser/Parser$OnTaskCompleted {
 }
 
 public final class com/prof/youtubeparser/VideoStats {
-	public static final field BASE_ADDRESS Ljava/lang/String;
-	public static final field Companion Lcom/prof/youtubeparser/VideoStats$Companion;
 	public fun <init> ()V
+	public final fun cancel ()V
 	public final fun execute (Ljava/lang/String;)V
 	public final fun generateStatsRequest (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 	public final fun getStats (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun onFinish (Lcom/prof/youtubeparser/VideoStats$OnTaskCompleted;)V
-}
-
-public final class com/prof/youtubeparser/VideoStats$Companion {
 }
 
 public abstract interface class com/prof/youtubeparser/VideoStats$OnTaskCompleted {
@@ -58,282 +54,24 @@ public final class com/prof/youtubeparser/core/ParsingResult {
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class com/prof/youtubeparser/models/stats/Item {
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/prof/youtubeparser/models/stats/Statistics;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Lcom/prof/youtubeparser/models/stats/Statistics;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/prof/youtubeparser/models/stats/Statistics;)Lcom/prof/youtubeparser/models/stats/Item;
-	public static synthetic fun copy$default (Lcom/prof/youtubeparser/models/stats/Item;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/prof/youtubeparser/models/stats/Statistics;ILjava/lang/Object;)Lcom/prof/youtubeparser/models/stats/Item;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getEtag ()Ljava/lang/String;
-	public final fun getId ()Ljava/lang/String;
-	public final fun getKind ()Ljava/lang/String;
-	public final fun getStatistics ()Lcom/prof/youtubeparser/models/stats/Statistics;
-	public fun hashCode ()I
-	public final fun setEtag (Ljava/lang/String;)V
-	public final fun setId (Ljava/lang/String;)V
-	public final fun setKind (Ljava/lang/String;)V
-	public final fun setStatistics (Lcom/prof/youtubeparser/models/stats/Statistics;)V
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/prof/youtubeparser/models/stats/Main {
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/prof/youtubeparser/models/stats/PageInfo;Ljava/util/List;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Lcom/prof/youtubeparser/models/stats/PageInfo;
-	public final fun component4 ()Ljava/util/List;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/prof/youtubeparser/models/stats/PageInfo;Ljava/util/List;)Lcom/prof/youtubeparser/models/stats/Main;
-	public static synthetic fun copy$default (Lcom/prof/youtubeparser/models/stats/Main;Ljava/lang/String;Ljava/lang/String;Lcom/prof/youtubeparser/models/stats/PageInfo;Ljava/util/List;ILjava/lang/Object;)Lcom/prof/youtubeparser/models/stats/Main;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getEtag ()Ljava/lang/String;
-	public final fun getItems ()Ljava/util/List;
-	public final fun getKind ()Ljava/lang/String;
-	public final fun getPageInfo ()Lcom/prof/youtubeparser/models/stats/PageInfo;
-	public fun hashCode ()I
-	public final fun setEtag (Ljava/lang/String;)V
-	public final fun setItems (Ljava/util/List;)V
-	public final fun setKind (Ljava/lang/String;)V
-	public final fun setPageInfo (Lcom/prof/youtubeparser/models/stats/PageInfo;)V
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/prof/youtubeparser/models/stats/PageInfo {
-	public fun <init> (II)V
-	public final fun component1 ()I
-	public final fun component2 ()I
-	public final fun copy (II)Lcom/prof/youtubeparser/models/stats/PageInfo;
-	public static synthetic fun copy$default (Lcom/prof/youtubeparser/models/stats/PageInfo;IIILjava/lang/Object;)Lcom/prof/youtubeparser/models/stats/PageInfo;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getResultsPerPage ()I
-	public final fun getTotalResults ()I
-	public fun hashCode ()I
-	public final fun setResultsPerPage (I)V
-	public final fun setTotalResults (I)V
-	public fun toString ()Ljava/lang/String;
-}
-
 public final class com/prof/youtubeparser/models/stats/Statistics {
-	public fun <init> (IIIII)V
-	public final fun component1 ()I
-	public final fun component2 ()I
-	public final fun component3 ()I
-	public final fun component4 ()I
-	public final fun component5 ()I
-	public final fun copy (IIIII)Lcom/prof/youtubeparser/models/stats/Statistics;
-	public static synthetic fun copy$default (Lcom/prof/youtubeparser/models/stats/Statistics;IIIIIILjava/lang/Object;)Lcom/prof/youtubeparser/models/stats/Statistics;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getCommentCount ()I
-	public final fun getDislikeCount ()I
-	public final fun getFavoriteCount ()I
-	public final fun getLikeCount ()I
-	public final fun getViewCount ()I
-	public fun hashCode ()I
-	public final fun setCommentCount (I)V
-	public final fun setDislikeCount (I)V
-	public final fun setFavoriteCount (I)V
-	public final fun setLikeCount (I)V
-	public final fun setViewCount (I)V
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/prof/youtubeparser/models/videos/Default {
 	public fun <init> ()V
-	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/Integer;
-	public final fun component3 ()Ljava/lang/Integer;
-	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;)Lcom/prof/youtubeparser/models/videos/Default;
-	public static synthetic fun copy$default (Lcom/prof/youtubeparser/models/videos/Default;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Lcom/prof/youtubeparser/models/videos/Default;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getHeight ()Ljava/lang/Integer;
-	public final fun getUrl ()Ljava/lang/String;
-	public final fun getWidth ()Ljava/lang/Integer;
-	public fun hashCode ()I
-	public final fun setHeight (Ljava/lang/Integer;)V
-	public final fun setUrl (Ljava/lang/String;)V
-	public final fun setWidth (Ljava/lang/Integer;)V
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/prof/youtubeparser/models/videos/High {
-	public fun <init> ()V
-	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/Integer;
-	public final fun component3 ()Ljava/lang/Integer;
-	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;)Lcom/prof/youtubeparser/models/videos/High;
-	public static synthetic fun copy$default (Lcom/prof/youtubeparser/models/videos/High;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Lcom/prof/youtubeparser/models/videos/High;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getHeight ()Ljava/lang/Integer;
-	public final fun getUrl ()Ljava/lang/String;
-	public final fun getWidth ()Ljava/lang/Integer;
-	public fun hashCode ()I
-	public final fun setHeight (Ljava/lang/Integer;)V
-	public final fun setUrl (Ljava/lang/String;)V
-	public final fun setWidth (Ljava/lang/Integer;)V
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/prof/youtubeparser/models/videos/Id {
-	public fun <init> ()V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lcom/prof/youtubeparser/models/videos/Id;
-	public static synthetic fun copy$default (Lcom/prof/youtubeparser/models/videos/Id;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/prof/youtubeparser/models/videos/Id;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getKind ()Ljava/lang/String;
-	public final fun getVideoId ()Ljava/lang/String;
-	public fun hashCode ()I
-	public final fun setKind (Ljava/lang/String;)V
-	public final fun setVideoId (Ljava/lang/String;)V
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/prof/youtubeparser/models/videos/Item {
-	public fun <init> ()V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/prof/youtubeparser/models/videos/Id;Lcom/prof/youtubeparser/models/videos/Snippet;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/prof/youtubeparser/models/videos/Id;Lcom/prof/youtubeparser/models/videos/Snippet;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Lcom/prof/youtubeparser/models/videos/Id;
-	public final fun component4 ()Lcom/prof/youtubeparser/models/videos/Snippet;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/prof/youtubeparser/models/videos/Id;Lcom/prof/youtubeparser/models/videos/Snippet;)Lcom/prof/youtubeparser/models/videos/Item;
-	public static synthetic fun copy$default (Lcom/prof/youtubeparser/models/videos/Item;Ljava/lang/String;Ljava/lang/String;Lcom/prof/youtubeparser/models/videos/Id;Lcom/prof/youtubeparser/models/videos/Snippet;ILjava/lang/Object;)Lcom/prof/youtubeparser/models/videos/Item;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getEtag ()Ljava/lang/String;
-	public final fun getId ()Lcom/prof/youtubeparser/models/videos/Id;
-	public final fun getKind ()Ljava/lang/String;
-	public final fun getSnippet ()Lcom/prof/youtubeparser/models/videos/Snippet;
-	public fun hashCode ()I
-	public final fun setEtag (Ljava/lang/String;)V
-	public final fun setId (Lcom/prof/youtubeparser/models/videos/Id;)V
-	public final fun setKind (Ljava/lang/String;)V
-	public final fun setSnippet (Lcom/prof/youtubeparser/models/videos/Snippet;)V
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/prof/youtubeparser/models/videos/Main {
-	public fun <init> ()V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/prof/youtubeparser/models/videos/PageInfo;Ljava/util/List;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/prof/youtubeparser/models/videos/PageInfo;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Ljava/lang/String;
-	public final fun component5 ()Lcom/prof/youtubeparser/models/videos/PageInfo;
-	public final fun component6 ()Ljava/util/List;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/prof/youtubeparser/models/videos/PageInfo;Ljava/util/List;)Lcom/prof/youtubeparser/models/videos/Main;
-	public static synthetic fun copy$default (Lcom/prof/youtubeparser/models/videos/Main;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/prof/youtubeparser/models/videos/PageInfo;Ljava/util/List;ILjava/lang/Object;)Lcom/prof/youtubeparser/models/videos/Main;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getEtag ()Ljava/lang/String;
-	public final fun getItems ()Ljava/util/List;
-	public final fun getKind ()Ljava/lang/String;
-	public final fun getNextPageToken ()Ljava/lang/String;
-	public final fun getPageInfo ()Lcom/prof/youtubeparser/models/videos/PageInfo;
-	public final fun getRegionCode ()Ljava/lang/String;
-	public fun hashCode ()I
-	public final fun setEtag (Ljava/lang/String;)V
-	public final fun setItems (Ljava/util/List;)V
-	public final fun setKind (Ljava/lang/String;)V
-	public final fun setNextPageToken (Ljava/lang/String;)V
-	public final fun setPageInfo (Lcom/prof/youtubeparser/models/videos/PageInfo;)V
-	public final fun setRegionCode (Ljava/lang/String;)V
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/prof/youtubeparser/models/videos/Medium {
-	public fun <init> ()V
-	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/Integer;
-	public final fun component3 ()Ljava/lang/Integer;
-	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;)Lcom/prof/youtubeparser/models/videos/Medium;
-	public static synthetic fun copy$default (Lcom/prof/youtubeparser/models/videos/Medium;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Lcom/prof/youtubeparser/models/videos/Medium;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getHeight ()Ljava/lang/Integer;
-	public final fun getUrl ()Ljava/lang/String;
-	public final fun getWidth ()Ljava/lang/Integer;
-	public fun hashCode ()I
-	public final fun setHeight (Ljava/lang/Integer;)V
-	public final fun setUrl (Ljava/lang/String;)V
-	public final fun setWidth (Ljava/lang/Integer;)V
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/prof/youtubeparser/models/videos/PageInfo {
-	public fun <init> ()V
-	public fun <init> (Ljava/lang/Integer;Ljava/lang/Integer;)V
-	public synthetic fun <init> (Ljava/lang/Integer;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;)V
+	public synthetic fun <init> (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/Integer;
 	public final fun component2 ()Ljava/lang/Integer;
-	public final fun copy (Ljava/lang/Integer;Ljava/lang/Integer;)Lcom/prof/youtubeparser/models/videos/PageInfo;
-	public static synthetic fun copy$default (Lcom/prof/youtubeparser/models/videos/PageInfo;Ljava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Lcom/prof/youtubeparser/models/videos/PageInfo;
+	public final fun component3 ()Ljava/lang/Integer;
+	public final fun component4 ()Ljava/lang/Integer;
+	public final fun component5 ()Ljava/lang/Integer;
+	public final fun copy (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;)Lcom/prof/youtubeparser/models/stats/Statistics;
+	public static synthetic fun copy$default (Lcom/prof/youtubeparser/models/stats/Statistics;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Lcom/prof/youtubeparser/models/stats/Statistics;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getResultsPerPage ()Ljava/lang/Integer;
-	public final fun getTotalResults ()Ljava/lang/Integer;
+	public final fun getCommentCount ()Ljava/lang/Integer;
+	public final fun getDislikeCount ()Ljava/lang/Integer;
+	public final fun getFavoriteCount ()Ljava/lang/Integer;
+	public final fun getLikeCount ()Ljava/lang/Integer;
+	public final fun getViewCount ()Ljava/lang/Integer;
 	public fun hashCode ()I
-	public final fun setResultsPerPage (Ljava/lang/Integer;)V
-	public final fun setTotalResults (Ljava/lang/Integer;)V
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/prof/youtubeparser/models/videos/Snippet {
-	public fun <init> ()V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/prof/youtubeparser/models/videos/Thumbnails;Ljava/lang/String;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/prof/youtubeparser/models/videos/Thumbnails;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Ljava/lang/String;
-	public final fun component5 ()Lcom/prof/youtubeparser/models/videos/Thumbnails;
-	public final fun component6 ()Ljava/lang/String;
-	public final fun component7 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/prof/youtubeparser/models/videos/Thumbnails;Ljava/lang/String;Ljava/lang/String;)Lcom/prof/youtubeparser/models/videos/Snippet;
-	public static synthetic fun copy$default (Lcom/prof/youtubeparser/models/videos/Snippet;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/prof/youtubeparser/models/videos/Thumbnails;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/prof/youtubeparser/models/videos/Snippet;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getChannelId ()Ljava/lang/String;
-	public final fun getChannelTitle ()Ljava/lang/String;
-	public final fun getDescription ()Ljava/lang/String;
-	public final fun getLiveBroadcastContent ()Ljava/lang/String;
-	public final fun getPublishedAt ()Ljava/lang/String;
-	public final fun getThumbnails ()Lcom/prof/youtubeparser/models/videos/Thumbnails;
-	public final fun getTitle ()Ljava/lang/String;
-	public fun hashCode ()I
-	public final fun setChannelId (Ljava/lang/String;)V
-	public final fun setChannelTitle (Ljava/lang/String;)V
-	public final fun setDescription (Ljava/lang/String;)V
-	public final fun setLiveBroadcastContent (Ljava/lang/String;)V
-	public final fun setPublishedAt (Ljava/lang/String;)V
-	public final fun setThumbnails (Lcom/prof/youtubeparser/models/videos/Thumbnails;)V
-	public final fun setTitle (Ljava/lang/String;)V
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/prof/youtubeparser/models/videos/Thumbnails {
-	public fun <init> ()V
-	public fun <init> (Lcom/prof/youtubeparser/models/videos/Default;Lcom/prof/youtubeparser/models/videos/Medium;Lcom/prof/youtubeparser/models/videos/High;)V
-	public synthetic fun <init> (Lcom/prof/youtubeparser/models/videos/Default;Lcom/prof/youtubeparser/models/videos/Medium;Lcom/prof/youtubeparser/models/videos/High;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Lcom/prof/youtubeparser/models/videos/Default;
-	public final fun component2 ()Lcom/prof/youtubeparser/models/videos/Medium;
-	public final fun component3 ()Lcom/prof/youtubeparser/models/videos/High;
-	public final fun copy (Lcom/prof/youtubeparser/models/videos/Default;Lcom/prof/youtubeparser/models/videos/Medium;Lcom/prof/youtubeparser/models/videos/High;)Lcom/prof/youtubeparser/models/videos/Thumbnails;
-	public static synthetic fun copy$default (Lcom/prof/youtubeparser/models/videos/Thumbnails;Lcom/prof/youtubeparser/models/videos/Default;Lcom/prof/youtubeparser/models/videos/Medium;Lcom/prof/youtubeparser/models/videos/High;ILjava/lang/Object;)Lcom/prof/youtubeparser/models/videos/Thumbnails;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getDefault ()Lcom/prof/youtubeparser/models/videos/Default;
-	public final fun getHigh ()Lcom/prof/youtubeparser/models/videos/High;
-	public final fun getMedium ()Lcom/prof/youtubeparser/models/videos/Medium;
-	public fun hashCode ()I
-	public final fun setDefault (Lcom/prof/youtubeparser/models/videos/Default;)V
-	public final fun setHigh (Lcom/prof/youtubeparser/models/videos/High;)V
-	public final fun setMedium (Lcom/prof/youtubeparser/models/videos/Medium;)V
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -353,10 +91,6 @@ public final class com/prof/youtubeparser/models/videos/Video {
 	public final fun getTitle ()Ljava/lang/String;
 	public final fun getVideoId ()Ljava/lang/String;
 	public fun hashCode ()I
-	public final fun setCoverLink (Ljava/lang/String;)V
-	public final fun setDate (Ljava/lang/String;)V
-	public final fun setTitle (Ljava/lang/String;)V
-	public final fun setVideoId (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
 }
 

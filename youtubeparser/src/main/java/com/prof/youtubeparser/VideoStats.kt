@@ -93,8 +93,8 @@ class VideoStats {
         }
     }
 
-    companion object {
-        const val BASE_ADDRESS = "https://www.googleapis.com/youtube/v3/videos?key="
+    private companion object {
+       private const val BASE_ADDRESS = "https://www.googleapis.com/youtube/v3/videos?key="
     }
 
     interface OnTaskCompleted {

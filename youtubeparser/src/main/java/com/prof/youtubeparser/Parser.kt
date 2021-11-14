@@ -150,8 +150,7 @@ class Parser {
     }
 
     companion object {
-        const val BASE_ADDRESS =
-            "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId="
+        private const val BASE_ADDRESS = "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId="
         const val ORDER_DATE = 1
         const val ORDER_VIEW_COUNT = 2
     }
