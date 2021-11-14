@@ -19,7 +19,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,11 +30,9 @@ import com.google.android.material.snackbar.Snackbar;
 import com.prof.youtubeparser.models.videos.Video;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView mRecyclerView;
     private VideoAdapter mAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private ProgressBar progressBar;
@@ -57,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         mFab = findViewById(R.id.fab);
 
-        mRecyclerView = findViewById(R.id.list);
+        RecyclerView mRecyclerView = findViewById(R.id.list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setHasFixedSize(true);
@@ -67,52 +64,43 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new VideoAdapter(new ArrayList<Video>(), MainActivity.this);
         mRecyclerView.setAdapter(mAdapter);
 
-        viewModel.getVideoLiveList().observe(this, new Observer<List<Video>>() {
-            @Override
-            public void onChanged(List<Video> videos) {
-                if (videos != null) {
-                    mAdapter.setVideos(videos);
-                    mAdapter.notifyDataSetChanged();
-                    progressBar.setVisibility(View.GONE);
-                    mSwipeRefreshLayout.setRefreshing(false);
-                }
+        viewModel.getVideoLiveList().observe(this, videos -> {
+            if (videos != null) {
+                mAdapter.setVideos(videos);
+                mAdapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.GONE);
+                mSwipeRefreshLayout.setRefreshing(false);
             }
         });
 
-        viewModel.getSnackbar().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                if (s != null) {
-                    Snackbar.make(relativeLayout, s, Snackbar.LENGTH_LONG).show();
-                    viewModel.onSnackbarShowed();
-                }
+        viewModel.getSnackbar().observe(this, string -> {
+            if (string != null) {
+                Snackbar.make(relativeLayout, string, Snackbar.LENGTH_LONG).show();
+                viewModel.onSnackbarShowed();
             }
         });
 
-//        viewModel.getLiveStats().observe(this, new Observer<Statistics>() {
-//            @Override
-//            public void onChanged(Statistics stats) {
-//                if (stats != null) {
-//                    String body = "Views: " + stats.getViewCount() + "\n" +
-//                            "Like: " + stats.getLikeCount() + "\n" +
-//                            "Dislike: " + stats.getDislikeCount() + "\n" +
-//                            "Number of comment: " + stats.getCommentCount() + "\n" +
-//                            "Number of favourite: " + stats.getFavoriteCount();
-//
-//                    final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this);
-//                    dialogBuilder.setTitle("Stats");
-//                    dialogBuilder.setMessage(body);
-//                    dialogBuilder.setCancelable(false);
-//                    dialogBuilder.setNegativeButton(android.R.string.ok,
-//                            new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int which) {
-//                                    dialog.dismiss();
-//                                }
-//                            });
-//                    dialogBuilder.show();
-//                }
-//            }
-//        });
+        viewModel.getLiveStats().observe(this, stats -> {
+            if (stats != null) {
+                String body = "Views: " + stats.getViewCount() + "\n" +
+                        "Like: " + stats.getLikeCount() + "\n" +
+                        "Dislike: " + stats.getDislikeCount() + "\n" +
+                        "Number of comment: " + stats.getCommentCount() + "\n" +
+                        "Number of favourite: " + stats.getFavoriteCount();
+
+                final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this);
+                dialogBuilder.setTitle("Stats");
+                dialogBuilder.setMessage(body);
+                dialogBuilder.setCancelable(false);
+                dialogBuilder.setNegativeButton(android.R.string.ok,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                dialogBuilder.show();
+            }
+        });
 
         //show the fab on the bottom of recycler view
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -162,14 +150,7 @@ public class MainActivity extends AppCompatActivity {
             builder.setMessage(R.string.alert_message)
                     .setTitle(R.string.alert_title)
                     .setCancelable(false)
-                    .setPositiveButton(R.string.alert_positive,
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog,
-                                                    int id) {
-                                    finish();
-                                }
-                            });
+                    .setPositiveButton(R.string.alert_positive, (dialog, id) -> finish());
 
             AlertDialog alert = builder.create();
             alert.show();
@@ -209,12 +190,7 @@ public class MainActivity extends AppCompatActivity {
             alertDialog.setMessage(Html.fromHtml(String.valueOf(Html.fromHtml(MainActivity.this.getString(R.string.info_text) +
                     " <a href='http://github.com/prof18/YoutubeParser'>GitHub.</a>" +
                     MainActivity.this.getString(R.string.author)))));
-            alertDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
+            alertDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_NEUTRAL, "OK", (dialog, which) -> dialog.dismiss());
             alertDialog.show();
 
             ((TextView) alertDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
