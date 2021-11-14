@@ -21,13 +21,20 @@ import com.prof.youtubeparser.engine.JsonFetcher
 import com.prof.youtubeparser.engine.JsonStatsParser
 import com.prof.youtubeparser.enginecoroutines.CoroutineEngine
 import com.prof.youtubeparser.models.stats.Statistics
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
+import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import kotlin.coroutines.CoroutineContext
 
 class VideoStats {
 
     private lateinit var onComplete: OnTaskCompleted
+
+    private lateinit var service: ExecutorService
+
+    private val parserJob = Job()
+    private val coroutineContext: CoroutineContext
+        get() = parserJob + Dispatchers.Default
 
     /**
      * This method generate the url to retrieve statistic of a video
@@ -42,7 +49,7 @@ class VideoStats {
 
     fun execute(url: String) {
         Executors.newSingleThreadExecutor().submit {
-            val service = Executors.newFixedThreadPool(2)
+            service = Executors.newFixedThreadPool(2)
             val f1 = service.submit(JsonFetcher(url))
             try {
                 val videoJson = f1.get()
@@ -60,9 +67,30 @@ class VideoStats {
         this.onComplete = onComplete
     }
 
-    suspend fun getStats(url: String) = withContext(Dispatchers.IO) {
+    suspend fun getStats(url: String) = withContext(coroutineContext) {
         val json = CoroutineEngine.fetchJson(url)
         return@withContext CoroutineEngine.parseStats(json)
+    }
+
+    /**
+     *  Cancel the execution of the fetching and the parsing.
+     */
+    fun cancel() {
+        if (::service.isInitialized) {
+            // The client is using Java!
+            try {
+                if (!service.isShutdown) {
+                    service.shutdownNow()
+                }
+            } catch (e: Exception) {
+                onComplete.onError(e)
+            }
+        } else {
+            // The client is using Kotlin and coroutines
+            if (coroutineContext.isActive) {
+                coroutineContext.cancel()
+            }
+        }
     }
 
     companion object {
