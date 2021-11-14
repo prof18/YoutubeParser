@@ -41,7 +41,5 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:${versions.lifecycleExtensions}"
 
     implementation "com.squareup.picasso:picasso:${versions.picasso}"
-    implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"
-
 }
 

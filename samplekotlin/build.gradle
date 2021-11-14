@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion versions.compileSdk
 
     defaultConfig {
         applicationId "com.prof.youtubeparser.sample.kotlin"
         minSdkVersion 15
-        targetSdkVersion 31
+        targetSdkVersion versions.targetSdk
         versionCode 30001
         versionName "3.0.1"
 
